@@ -34,6 +34,12 @@
             50% { transform: translateY(-10px); }
         }
 
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+        }
+
         .animate-float { animation: float 5s ease-in-out infinite; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -88,6 +94,10 @@
             border: 3px solid var(--accent-cyan);
         }
 
+        .audio-pulse {
+            animation: pulse-cyan 2s infinite;
+        }
+
         .contact-pill {
             background: rgba(15, 23, 42, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -98,11 +108,10 @@
             background: rgba(34, 211, 238, 0.05);
         }
     </style>
-    <!-- Confirmación técnica: No SVG, No Mermaid. Todos los gráficos son Canvas. -->
 </head>
 <body class="selection:bg-cyan-500 selection:text-white">
 
-    <!-- SISTEMA DE MODALES -->
+    <!-- MODAL SYSTEM -->
     <div id="modal-container" class="modal" onclick="closeModal(event)">
         <div class="glass-card w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 border-white/10" onclick="event.stopPropagation()">
             <div class="flex justify-between items-start mb-6">
@@ -112,6 +121,9 @@
             <div id="modal-content" class="text-slate-300 space-y-4 text-lg"></div>
         </div>
     </div>
+
+    <!-- AUDIO ELEMENT -->
+    <audio id="profile-audio" src="public/audio/intro_ai.mp3" preload="auto"></audio>
 
     <!-- HERO SECTION -->
     <section class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
@@ -132,8 +144,20 @@
                 <h1 class="text-6xl md:text-8xl font-orbitron font-bold leading-tight mb-4">
                     Fabio <br><span class="gradient-text">Salinas</span>
                 </h1>
+                
+                <!-- AUDIO CONTROLLER -->
+                <div class="mb-8">
+                    <button id="audio-toggle" onclick="toggleAudio()" class="flex items-center gap-3 px-6 py-3 bg-slate-900/80 border border-cyan-500/30 rounded-full hover:bg-slate-800 transition-all group audio-pulse">
+                        <span id="audio-icon" class="text-xl">🔊</span>
+                        <div class="text-left">
+                            <span class="block text-xs font-bold text-cyan-400 uppercase tracking-widest">AI Profile Briefing</span>
+                            <span id="audio-status" class="text-slate-400 text-xs">Click para escuchar intro</span>
+                        </div>
+                    </button>
+                </div>
+
                 <p class="text-xl md:text-2xl text-slate-400 font-light mb-8 max-w-xl">
-                    Arquitecto de ecosistemas de inteligencia. Especialista en <span class="text-white font-semibold">Lakehouse</span>, <span class="text-white font-semibold">Arquitectura de Datos</span> y <span class="text-white font-semibold">Automatización IA</span>.
+                    Arquitecto de ecosistemas de inteligencia. Líder en <span class="text-white font-semibold">Lakehouse</span>, <span class="text-white font-semibold">Gobernanza de Datos</span> y <span class="text-white font-semibold">IA Generativa</span>.
                 </p>
                 
                 <div class="flex flex-wrap gap-4 mb-10">
@@ -145,10 +169,9 @@
                     </a>
                 </div>
 
-                <!-- Enlaces de Contacto Rápido -->
                 <div class="flex flex-wrap gap-4">
                     <a href="mailto:fabio.salinas1982@gmail.com" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
-                        <span>✉️</span> Email
+                        <span>✉️</span> fabio.salinas1982@gmail.com
                     </a>
                     <a href="https://www.linkedin.com/in/fabiosalinas" target="_blank" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
                         <span>👔</span> LinkedIn
@@ -161,13 +184,12 @@
             
             <div class="reveal flex justify-center lg:justify-end">
                 <div class="relative w-80 h-80 md:w-96 md:h-96 animate-float">
-                    <!-- Avatar Image from GitHub -->
                     <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-3xl rotate-6 opacity-20 blur-xl"></div>
                     <div class="glass-card h-full w-full flex flex-col items-center justify-center p-6 border-cyan-500/30 overflow-hidden">
                         <img src="https://avatars.githubusercontent.com/u/39883976" alt="Fabio Salinas" class="w-48 h-48 md:w-64 md:h-64 rounded-2xl object-cover profile-glow mb-6">
                         <div class="text-center">
                             <div class="text-xl font-bold text-white mb-1 uppercase font-orbitron">Fabio Salinas</div>
-                            <div class="text-cyan-400 font-mono tracking-tighter uppercase text-xs">Bogotá, Colombia</div>
+                            <div class="text-cyan-400 font-mono tracking-tighter uppercase text-xs">📍 Bogotá, Colombia</div>
                         </div>
                     </div>
                 </div>
@@ -178,34 +200,34 @@
     <!-- HDI SEGUROS SECTION -->
     <section id="hdi" class="py-24 px-6 border-t border-white/5">
         <div class="container mx-auto">
-            <div class="mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 uppercase">Trayectoria Corporativa</h2>
+             <div class="mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 uppercase">Trayectoria HDI Seguros</h2>
                 <div class="h-1 w-32 bg-cyan-500"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 <div class="glass-card p-8 border-cyan-500/20 reveal">
                     <div class="text-cyan-400 font-bold mb-2 uppercase text-xs font-mono">2023 - 2024</div>
                     <h3 class="text-xl font-bold text-white mb-2 uppercase">Director de Datos</h3>
-                    <p class="text-sm text-slate-400">Implementación de bases de gobernanza e integridad de activos.</p>
+                    <p class="text-sm text-slate-400">Establecimiento de la estrategia de gobernanza e integridad de activos de información.</p>
                 </div>
                 <div class="glass-card p-8 border-white/5 reveal" style="transition-delay: 100ms;">
                     <div class="text-slate-400 font-bold mb-2 uppercase text-xs font-mono">2024 - 2025</div>
                     <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos</h3>
-                    <p class="text-sm text-slate-400">Escalamiento de arquitectura y optimización de modelos corporativos.</p>
+                    <p class="text-sm text-slate-400">Escalamiento de la arquitectura hacia modelos de toma de decisiones masivos.</p>
                 </div>
                 <div class="glass-card p-8 border-purple-500/20 reveal" style="transition-delay: 200ms;">
                     <div class="text-fuchsia-400 font-bold mb-2 uppercase text-xs font-mono">Oct 2025 - Presente</div>
                     <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos y Analítica</h3>
-                    <p class="text-sm text-slate-400">Roadmap IA y equipos de alto desempeño multidisciplinar.</p>
+                    <p class="text-sm text-slate-400">Liderazgo integral del Roadmap de IA y equipos multidisciplinares de alto desempeño.</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="reveal">
-                    <h3 class="text-3xl font-bold text-white mb-6">Mando Estratégico en HDI</h3>
+                    <h3 class="text-3xl font-bold text-white mb-6 uppercase">Mando Estratégico</h3>
                     <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                        Orquesto las verticales de Ingeniería, Gobierno, BI y Analítica. Mi enfoque es transformar a HDI Seguros en una compañía impulsada por datos, optimizando el ROAS y creando ventajas competitivas mediante el uso ético de la IA.
+                        Como Gerente de Datos y Analítica, orquesto un equipo multidisciplinario enfocado en convertir el dato en ingresos y eficiencia. Mi gestión abarca Ingeniería de Datos (Lakehouse AWS), Gobierno, BI y el despliegue de iniciativas disruptivas de IA.
                     </p>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800">
@@ -227,43 +249,43 @@
         </div>
     </section>
 
-    <!-- INNOVATION LAB - FIN-LY -->
+    <!-- INNOVATION LAB - FIN-LY.ME -->
     <section class="py-24 bg-slate-950/50 border-y border-white/5 px-6">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">Innovation: <span class="gradient-text">Fin-ly.me</span></h2>
-                    <p class="text-slate-400 text-xl">Arquitectura Full Stack y Agentes Autónomos de IA.</p>
+                    <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">Innovation Lab: <span class="gradient-text">Fin-ly.me</span></h2>
+                    <p class="text-slate-400 text-xl">Donde la teoría se convierte en automatización pura con IA.</p>
                 </div>
-                <button onclick="openModal('finly-stack')" class="mt-6 md:mt-0 px-6 py-3 bg-purple-600 rounded-xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-purple-900/20 transition hover:bg-purple-500">Detalle del Stack</button>
+                <button onclick="openModal('finly-stack')" class="mt-6 md:mt-0 px-6 py-3 bg-purple-600 rounded-xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-purple-900/20">Ver Tech Stack E2E</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
                 <div class="glass-card p-6 border-white/5 group">
                     <div class="text-3xl mb-4">🧩</div>
                     <h4 class="font-bold text-white mb-2 uppercase">n8n Logic</h4>
-                    <p class="text-sm text-slate-400">Automatización de flujos complejos y MCPs.</p>
+                    <p class="text-sm text-slate-400">Backend asíncrono, OCR con IA y procesamiento de extractos.</p>
                 </div>
                 <div class="glass-card p-6 border-white/5 group">
                     <div class="text-3xl mb-4">⚡</div>
-                    <h4 class="font-bold text-white mb-2 uppercase">Full Stack 92%</h4>
-                    <p class="text-sm text-slate-400">Supabase, PostgreSQL y Lovable Frontend.</p>
+                    <h4 class="font-bold text-white mb-2 uppercase">Supabase Core</h4>
+                    <p class="text-sm text-slate-400">PostgreSQL, Edge Functions, RLS y DWH recurrente.</p>
                 </div>
                 <div class="glass-card p-6 border-white/5 group">
                     <div class="text-3xl mb-4">🤖</div>
                     <h4 class="font-bold text-white mb-2 uppercase">RAG Agentes</h4>
-                    <p class="text-sm text-slate-400">Queries SQL en lenguaje natural sobre Vector DB.</p>
+                    <p class="text-sm text-slate-400">Finly Coach: Consultas en lenguaje natural mediante LLMs.</p>
                 </div>
                 <div class="glass-card p-6 border-white/5 group">
                     <div class="text-3xl mb-4">🎞️</div>
                     <h4 class="font-bold text-white mb-2 uppercase">Creative IA</h4>
-                    <p class="text-sm text-slate-400">Avatares Heygen y Vídeo con Veo 3.1.</p>
+                    <p class="text-sm text-slate-400">Vídeos hiperrealistas con Heygen y Veo 3.1.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MATRIZ DE COMPETENCIAS -->
+    <!-- COMPETENCIAS SECTION -->
     <section class="py-24 px-6">
         <div class="container mx-auto">
             <h2 class="text-center text-4xl font-orbitron font-bold text-white mb-20 reveal uppercase tracking-widest">Matriz de Competencias 360°</h2>
@@ -275,105 +297,110 @@
                 </div>
                 <div class="space-y-8 reveal">
                     <div class="glass-card p-6 border-cyan-500/30">
-                        <h4 class="text-xl font-bold text-white mb-4 uppercase">Estrategia & Innovación</h4>
+                        <h4 class="text-xl font-bold text-white mb-4 uppercase">Estrategia & Ejecución</h4>
                         <p class="text-slate-400 leading-relaxed">
-                            Impulso una estrategia de <strong>Lakehouse sobre AWS</strong> en HDI, traduciendo el uso inteligente de los datos en ahorro real y decisiones directas para la compañía. Mi enfoque combina jerga empresarial con ejecución técnica de élite.
+                            Mi perfil equilibra el liderazgo estratégico con una ejecución técnica profunda. Desde la definición de Roadmaps de Datos en HDI hasta el desarrollo Full Stack de agentes de IA en Fin-ly, mi enfoque es siempre hacia la generación de valor.
                         </p>
                     </div>
                     <button onclick="openModal('education')" class="w-full py-4 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-2xl font-bold text-white uppercase tracking-widest hover:opacity-90 transition shadow-xl">
-                        EDUCACIÓN & HONORES ACADÉMICOS
+                        Ver Formación & Honores Académicos
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER & CONTACT -->
-    <footer class="py-20 border-t border-white/5 bg-slate-950/80 px-6">
+    <footer class="py-20 border-t border-white/5 bg-slate-950/80 px-6 text-center">
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-                <div class="reveal text-center md:text-left">
-                    <h4 class="text-2xl font-orbitron font-bold text-white mb-6 uppercase">Localidad</h4>
-                    <p class="text-slate-400 text-lg">Bogotá, Colombia</p>
-                    <p class="text-slate-500 mt-2 italic font-mono uppercase text-xs">Uso Horario: GMT-5</p>
+            <div class="flex flex-col items-center gap-4">
+                <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">FABIO SALINAS // DATA INTELLIGENCE ARCHITECT</p>
+                <div class="flex gap-6 text-2xl">
+                    <a href="mailto:fabio.salinas1982@gmail.com" class="hover:text-cyan-400 transition">✉️</a>
+                    <a href="https://www.linkedin.com/in/fabiosalinas" target="_blank" class="hover:text-cyan-400 transition">👔</a>
+                    <a href="tel:+573212200410" class="hover:text-cyan-400 transition">📱</a>
                 </div>
-                <div class="reveal text-center md:text-left">
-                    <h4 class="text-2xl font-orbitron font-bold text-white mb-6 uppercase">Comunicación</h4>
-                    <div class="space-y-4">
-                        <a href="mailto:fabio.salinas1982@gmail.com" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
-                            <span class="w-8">✉️</span> fabio.salinas1982@gmail.com
-                        </a>
-                        <a href="tel:+573212200410" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
-                            <span class="w-8">📱</span> +57 321 220 0410
-                        </a>
-                    </div>
-                </div>
-                <div class="reveal text-center md:text-left">
-                    <h4 class="text-2xl font-orbitron font-bold text-white mb-6 uppercase">Redes & Código</h4>
-                    <div class="flex flex-col gap-4">
-                        <a href="https://www.linkedin.com/in/fabiosalinas" target="_blank" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
-                            <span class="w-8">👔</span> LinkedIn Profile
-                        </a>
-                        <a href="https://github.com/fnsalinas" target="_blank" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
-                            <span class="w-8">💻</span> GitHub Portfolio
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center pt-10 border-t border-white/5">
-                <p class="text-slate-600 text-xs font-mono uppercase tracking-widest">FABIO SALINAS // SYSTEM VERSION 2025.12.19</p>
+                <p class="text-slate-600 text-xs font-mono uppercase mt-6 tracking-widest">SYSTEM VERSION 2.2 // BOGOTÁ, COLOMBIA // 2025</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // --- AUDIO ENGINE ---
+        const audio = document.getElementById('profile-audio');
+        const audioBtn = document.getElementById('audio-toggle');
+        const audioStatus = document.getElementById('audio-status');
+        const audioIcon = document.getElementById('audio-icon');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                audioStatus.innerText = "Reproduciendo briefing de perfil...";
+                audioIcon.innerText = "⏸️";
+                audioBtn.classList.remove('audio-pulse');
+            } else {
+                audio.pause();
+                audioStatus.innerText = "Audio pausado";
+                audioIcon.innerText = "🔊";
+            }
+        }
+
+        audio.onended = () => {
+            audioStatus.innerText = "Escuchar de nuevo";
+            audioIcon.innerText = "🔊";
+            audioBtn.classList.add('audio-pulse');
+        };
+
         // --- MODAL ENGINE ---
         const modalData = {
             'intro': {
                 title: 'Perfil Profesional Maestro',
                 content: `
                     <div class="space-y-6">
-                        <p>Ingeniero Industrial especializado en Business Intelligence y analítica de datos, con maestría en TIC. Científico de Datos Certificado (Correlation One, MINTIC).</p>
+                        <p>Ingeniero Industrial con Maestría en TIC y Científico de Datos Graduado con Honores (DS4A). Líder híbrido capaz de navegar entre la junta directiva y la arquitectura técnica.</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="p-4 bg-slate-900/50 rounded-xl border border-white/5">
-                                <h5 class="text-cyan-400 font-bold mb-2 uppercase text-xs">Core Expertise</h5>
-                                <p class="text-sm">Estrategia de Datos, Ingeniería de Pipelines (AWS/GCP), IA Generativa y Liderazgo de equipos de alto desempeño.</p>
+                                <h5 class="text-cyan-400 font-bold mb-2 uppercase text-xs tracking-tighter">Core Expertise</h5>
+                                <p class="text-sm">Estrategia de Datos, Ingeniería Lakehouse (AWS), IA Generativa (Agentes) y Liderazgo Estratégico.</p>
                             </div>
                             <div class="p-4 bg-slate-900/50 rounded-xl border border-white/5">
-                                <h5 class="text-purple-400 font-bold mb-2 uppercase text-xs">Información</h5>
-                                <p class="text-sm">Email: fabio.salinas1982@gmail.com<br>Móvil: +57 321 220 0410</p>
+                                <h5 class="text-purple-400 font-bold mb-2 uppercase text-xs tracking-tighter">Impacto HDI</h5>
+                                <p class="text-sm">Construcción del roadmap definitivo de datos y equipo multidisciplinario de alto desempeño.</p>
                             </div>
                         </div>
-                        <p class="text-slate-400 text-sm">📍 Basado en Bogotá, Colombia con enfoque global.</p>
+                        <p class="italic text-slate-400">Especialista en convertir la complejidad técnica en activos de negocio reales.</p>
                     </div>
                 `
             },
             'finly-stack': {
-                title: 'Stack Tecnológico - Fin-ly.me',
+                title: 'Fin-ly.me Tech Stack',
                 content: `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="p-4 bg-slate-800 rounded-xl">
-                            <h5 class="text-cyan-400 font-bold mb-2 uppercase text-xs">Arquitectura Backend</h5>
-                            <p class="text-sm">n8n, Python, SQL, Linux, Supabase PostgreSQL, Edge Functions.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <h5 class="text-cyan-400 font-bold uppercase text-xs">Backend & Automatización</h5>
+                            <p class="text-sm">n8n (Workflows asíncronos), OCR con IA, Integración de múltiples APIs (Meta, Google, TikTok, Evolution API).</p>
                         </div>
-                        <div class="p-4 bg-slate-800 rounded-xl">
-                            <h5 class="text-purple-400 font-bold mb-2 uppercase text-xs">Entorno de Desarrollo</h5>
-                            <p class="text-sm">Claude Code, Cursor, VSCode, GitHub CI/CD, Lovable (Vite).</p>
+                        <div class="space-y-4">
+                            <h5 class="text-purple-400 font-bold uppercase text-xs">Cloud & Data</h5>
+                            <p class="text-sm">Supabase (PostgreSQL, Edge Functions, RLS, DWH automático), GitHub CI/CD.</p>
                         </div>
-                    </div>
-                    <div class="mt-4 p-4 border border-white/5 rounded-xl">
-                        <h5 class="text-lime-400 font-bold mb-2 uppercase text-xs">IA & Multimedia Stack</h5>
-                        <p class="text-sm">Gemini 2.5 Flash, Heygen, Eleven Labs, OpenRouter, Google AI Studio, NotebookLM, Higgsfield AI.</p>
+                        <div class="space-y-4">
+                            <h5 class="text-lime-400 font-bold uppercase text-xs">IA & Frontend</h5>
+                            <p class="text-sm">Gemini CLI, Claude Code, Cursor, Lovable (Vite), Agentes RAG (Finly Coach).</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h5 class="text-orange-400 font-bold uppercase text-xs">Multimedia & Ads</h5>
+                            <p class="text-sm">Heygen (Vídeo), ElevenLabs (Audio), Meta Ads API, Google Analytics API.</p>
+                        </div>
                     </div>
                 `
             },
             'education': {
-                title: 'Formación de Elite',
+                title: 'Excelencia Académica',
                 content: `
                     <div class="space-y-6">
                         <div class="border-l-4 border-cyan-500 pl-4 py-1">
                             <h5 class="text-white font-bold uppercase text-sm">DS4A / Colombia</h5>
-                            <p class="text-cyan-400 text-sm italic font-bold">Graduado con Honores - Data Science (Correlation One / MINTIC)</p>
+                            <p class="text-cyan-400 text-sm font-bold">Graduado con Honores - Data Science (Correlation One / MINTIC)</p>
                         </div>
                         <div class="border-l-4 border-purple-500 pl-4 py-1">
                             <h5 class="text-white font-bold uppercase text-sm">Magíster en TIC</h5>
@@ -401,7 +428,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // --- CHART CONFIGURATION ---
+        // --- CHART HELPERS ---
         function processLabel(label) {
             if (label.length <= 16) return label;
             const words = label.split(' ');
@@ -429,7 +456,7 @@
         };
 
         window.onload = function() {
-            // Team Chart (HDI Seguros)
+            // Team Chart
             new Chart(document.getElementById('teamChart'), {
                 type: 'doughnut',
                 data: {
@@ -451,13 +478,13 @@
                 }
             });
 
-            // Radar Chart (Matriz de Competencias)
+            // Radar Chart - CALIFICACIONES MAESTRAS
             new Chart(document.getElementById('radarChart'), {
                 type: 'radar',
                 data: {
                     labels: ['Liderazgo Estratégico', 'Arquitectura Datos', 'IA Generativa', 'Growth Marketing', 'Full-Stack Dev', 'Gobernanza'].map(processLabel),
                     datasets: [{
-                        label: 'Nivel Maestro (%)',
+                        label: 'Dominio (%)',
                         data: [98, 95, 95, 80, 92, 97],
                         fill: true,
                         backgroundColor: 'rgba(34, 211, 238, 0.2)',
@@ -484,11 +511,9 @@
                 }
             });
 
-            // Reveal Animation Observer
+            // Intersection Observer
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('active');
-                });
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
             }, { threshold: 0.1 });
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         };
