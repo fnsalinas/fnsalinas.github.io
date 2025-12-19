@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabio Salinas | Data & AI Intelligence Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #020617;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #a855f7;
+            --accent-lime: #4ade80;
+            --glass-bg: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: #f8fafc;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent-cyan);
+            transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.15);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            height: 350px;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 10px; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(2, 6, 23, 0.96);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.active { display: flex; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-glow {
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
+            border: 3px solid var(--accent-cyan);
+        }
+
+        .contact-pill {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .contact-pill:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(34, 211, 238, 0.05);
+        }
+    </style>
+    <!-- Confirmación técnica: No SVG, No Mermaid. Todos los gráficos son Canvas. -->
+</head>
+<body class="selection:bg-cyan-500 selection:text-white">
+
+    <!-- SISTEMA DE MODALES -->
+    <div id="modal-container" class="modal" onclick="closeModal(event)">
+        <div class="glass-card w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 border-white/10" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <h2 id="modal-title" class="text-3xl font-orbitron font-bold gradient-text">Detalle</h2>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-3xl font-bold">&times;</button>
+            </div>
+            <div id="modal-content" class="text-slate-300 space-y-4 text-lg"></div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full -z-10 opacity-30">
+            <div class="absolute top-[10%] left-[15%] w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full"></div>
+            <div class="absolute bottom-[10%] right-[15%] w-96 h-96 bg-purple-500/20 blur-[100px] rounded-full"></div>
+        </div>
+
+        <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold mb-6">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+                    </span>
+                    ESTADO: GERENTE DE DATOS Y ANALÍTICA
+                </div>
+                <h1 class="text-6xl md:text-8xl font-orbitron font-bold leading-tight mb-4">
+                    Fabio <br><span class="gradient-text">Salinas</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-400 font-light mb-8 max-w-xl">
+                    Arquitecto de ecosistemas de inteligencia. Especialista en <span class="text-white font-semibold">Lakehouse</span>, <span class="text-white font-semibold">Arquitectura de Datos</span> y <span class="text-white font-semibold">Automatización IA</span>.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 mb-10">
+                    <button onclick="openModal('intro')" class="px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-900/20 uppercase tracking-widest text-xs">
+                        PERFIL MAESTRO
+                    </button>
+                    <a href="#hdi" class="px-8 py-4 border border-slate-700 hover:border-purple-500 text-white font-bold rounded-xl transition-all uppercase tracking-widest text-xs">
+                        EXPLORAR HITOS
+                    </a>
+                </div>
+
+                <!-- Enlaces de Contacto Rápido -->
+                <div class="flex flex-wrap gap-4">
+                    <a href="mailto:fabio.salinas1982@gmail.com" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
+                        <span>✉️</span> Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/fabiosalinas" target="_blank" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
+                        <span>👔</span> LinkedIn
+                    </a>
+                    <a href="https://github.com/fnsalinas" target="_blank" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
+                        <span>💻</span> GitHub
+                    </a>
+                </div>
+            </div>
+            
+            <div class="reveal flex justify-center lg:justify-end">
+                <div class="relative w-80 h-80 md:w-96 md:h-96 animate-float">
+                    <!-- Avatar Image from GitHub -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-3xl rotate-6 opacity-20 blur-xl"></div>
+                    <div class="glass-card h-full w-full flex flex-col items-center justify-center p-6 border-cyan-500/30 overflow-hidden">
+                        <img src="https://avatars.githubusercontent.com/u/39883976" alt="Fabio Salinas" class="w-48 h-48 md:w-64 md:h-64 rounded-2xl object-cover profile-glow mb-6">
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white mb-1 uppercase font-orbitron">Fabio Salinas</div>
+                            <div class="text-cyan-400 font-mono tracking-tighter uppercase text-xs">Bogotá, Colombia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HDI SEGUROS SECTION -->
+    <section id="hdi" class="py-24 px-6 border-t border-white/5">
+        <div class="container mx-auto">
+            <div class="mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 uppercase">Trayectoria Corporativa</h2>
+                <div class="h-1 w-32 bg-cyan-500"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="glass-card p-8 border-cyan-500/20 reveal">
+                    <div class="text-cyan-400 font-bold mb-2 uppercase text-xs font-mono">2023 - 2024</div>
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase">Director de Datos</h3>
+                    <p class="text-sm text-slate-400">Implementación de bases de gobernanza e integridad de activos.</p>
+                </div>
+                <div class="glass-card p-8 border-white/5 reveal" style="transition-delay: 100ms;">
+                    <div class="text-slate-400 font-bold mb-2 uppercase text-xs font-mono">2024 - 2025</div>
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos</h3>
+                    <p class="text-sm text-slate-400">Escalamiento de arquitectura y optimización de modelos corporativos.</p>
+                </div>
+                <div class="glass-card p-8 border-purple-500/20 reveal" style="transition-delay: 200ms;">
+                    <div class="text-fuchsia-400 font-bold mb-2 uppercase text-xs font-mono">Oct 2025 - Presente</div>
+                    <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos y Analítica</h3>
+                    <p class="text-sm text-slate-400">Roadmap IA y equipos de alto desempeño multidisciplinar.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h3 class="text-3xl font-bold text-white mb-6">Mando Estratégico en HDI</h3>
+                    <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                        Orquesto las verticales de Ingeniería, Gobierno, BI y Analítica. Mi enfoque es transformar a HDI Seguros en una compañía impulsada por datos, optimizando el ROAS y creando ventajas competitivas mediante el uso ético de la IA.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800">
+                            <div class="text-cyan-500 font-bold text-2xl mb-1">97%</div>
+                            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Gobernanza</div>
+                        </div>
+                        <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800">
+                            <div class="text-purple-500 font-bold text-2xl mb-1">95%</div>
+                            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Arquitectura</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-8 reveal">
+                    <div class="chart-container">
+                        <canvas id="teamChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INNOVATION LAB - FIN-LY -->
+    <section class="py-24 bg-slate-950/50 border-y border-white/5 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">Innovation: <span class="gradient-text">Fin-ly.me</span></h2>
+                    <p class="text-slate-400 text-xl">Arquitectura Full Stack y Agentes Autónomos de IA.</p>
+                </div>
+                <button onclick="openModal('finly-stack')" class="mt-6 md:mt-0 px-6 py-3 bg-purple-600 rounded-xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-purple-900/20 transition hover:bg-purple-500">Detalle del Stack</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                <div class="glass-card p-6 border-white/5 group">
+                    <div class="text-3xl mb-4">🧩</div>
+                    <h4 class="font-bold text-white mb-2 uppercase">n8n Logic</h4>
+                    <p class="text-sm text-slate-400">Automatización de flujos complejos y MCPs.</p>
+                </div>
+                <div class="glass-card p-6 border-white/5 group">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h4 class="font-bold text-white mb-2 uppercase">Full Stack 92%</h4>
+                    <p class="text-sm text-slate-400">Supabase, PostgreSQL y Lovable Frontend.</p>
+                </div>
+                <div class="glass-card p-6 border-white/5 group">
+                    <div class="text-3xl mb-4">🤖</div>
+                    <h4 class="font-bold text-white mb-2 uppercase">RAG Agentes</h4>
+                    <p class="text-sm text-slate-400">Queries SQL en lenguaje natural sobre Vector DB.</p>
+                </div>
+                <div class="glass-card p-6 border-white/5 group">
+                    <div class="text-3xl mb-4">🎞️</div>
+                    <h4 class="font-bold text-white mb-2 uppercase">Creative IA</h4>
+                    <p class="text-sm text-slate-400">Avatares Heygen y Vídeo con Veo 3.1.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATRIZ DE COMPETENCIAS -->
+    <section class="py-24 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-center text-4xl font-orbitron font-bold text-white mb-20 reveal uppercase tracking-widest">Matriz de Competencias 360°</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 reveal">
+                    <div class="chart-container h-[450px]">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-8 reveal">
+                    <div class="glass-card p-6 border-cyan-500/30">
+                        <h4 class="text-xl font-bold text-white mb-4 uppercase">Estrategia & Innovación</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            Impulso una estrategia de <strong>Lakehouse sobre AWS</strong> en HDI, traduciendo el uso inteligente de los datos en ahorro real y decisiones directas para la compañía. Mi enfoque combina jerga empresarial con ejecución técnica de élite.
+                        </p>
+                    </div>
+                    <button onclick="openModal('education')" class="w-full py-4 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-2xl font-bold text-white uppercase tracking-widest hover:opacity-90 transition shadow-xl">
+                        EDUCACIÓN & HONORES ACADÉMICOS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTACT -->
+    <footer class="py-20 border-t border-white/5 bg-slate-950/80 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div class="reveal text-center md:text-left">
+                    <h4 class="text-2xl font-orbitron font-bold text-white mb-6 uppercase">Localidad</h4>
+                    <p class="text-slate-400 text-lg">Bogotá, Colombia</p>
+                    <p class="text-slate-500 mt-2 italic font-mono uppercase text-xs">Uso Horario: GMT-5</p>
+                </div>
+                <div class="reveal text-center md:text-left">
+                    <h4 class="text-2xl font-orbitron font-bold text-white mb-6 uppercase">Comunicación</h4>
+                    <div class="space-y-4">
+                        <a href="mailto:fabio.salinas1982@gmail.com" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
+                            <span class="w-8">✉️</span> fabio.salinas1982@gmail.com
+                        </a>
+                        <a href="tel:+573212200410" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
+                            <span class="w-8">📱</span> +57 321 220 0410
+                        </a>
+                    </div>
+                </div>
+                <div class="reveal text-center md:text-left">
+                    <h4 class="text-2xl font-orbitron font-bold text-white mb-6 uppercase">Redes & Código</h4>
+                    <div class="flex flex-col gap-4">
+                        <a href="https://www.linkedin.com/in/fabiosalinas" target="_blank" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
+                            <span class="w-8">👔</span> LinkedIn Profile
+                        </a>
+                        <a href="https://github.com/fnsalinas" target="_blank" class="flex items-center justify-center md:justify-start gap-3 text-slate-300 hover:text-cyan-400 transition">
+                            <span class="w-8">💻</span> GitHub Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-10 border-t border-white/5">
+                <p class="text-slate-600 text-xs font-mono uppercase tracking-widest">FABIO SALINAS // SYSTEM VERSION 2025.12.19</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- MODAL ENGINE ---
+        const modalData = {
+            'intro': {
+                title: 'Perfil Profesional Maestro',
+                content: `
+                    <div class="space-y-6">
+                        <p>Ingeniero Industrial especializado en Business Intelligence y analítica de datos, con maestría en TIC. Científico de Datos Certificado (Correlation One, MINTIC).</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-slate-900/50 rounded-xl border border-white/5">
+                                <h5 class="text-cyan-400 font-bold mb-2 uppercase text-xs">Core Expertise</h5>
+                                <p class="text-sm">Estrategia de Datos, Ingeniería de Pipelines (AWS/GCP), IA Generativa y Liderazgo de equipos de alto desempeño.</p>
+                            </div>
+                            <div class="p-4 bg-slate-900/50 rounded-xl border border-white/5">
+                                <h5 class="text-purple-400 font-bold mb-2 uppercase text-xs">Información</h5>
+                                <p class="text-sm">Email: fabio.salinas1982@gmail.com<br>Móvil: +57 321 220 0410</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm">📍 Basado en Bogotá, Colombia con enfoque global.</p>
+                    </div>
+                `
+            },
+            'finly-stack': {
+                title: 'Stack Tecnológico - Fin-ly.me',
+                content: `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate-800 rounded-xl">
+                            <h5 class="text-cyan-400 font-bold mb-2 uppercase text-xs">Arquitectura Backend</h5>
+                            <p class="text-sm">n8n, Python, SQL, Linux, Supabase PostgreSQL, Edge Functions.</p>
+                        </div>
+                        <div class="p-4 bg-slate-800 rounded-xl">
+                            <h5 class="text-purple-400 font-bold mb-2 uppercase text-xs">Entorno de Desarrollo</h5>
+                            <p class="text-sm">Claude Code, Cursor, VSCode, GitHub CI/CD, Lovable (Vite).</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 border border-white/5 rounded-xl">
+                        <h5 class="text-lime-400 font-bold mb-2 uppercase text-xs">IA & Multimedia Stack</h5>
+                        <p class="text-sm">Gemini 2.5 Flash, Heygen, Eleven Labs, OpenRouter, Google AI Studio, NotebookLM, Higgsfield AI.</p>
+                    </div>
+                `
+            },
+            'education': {
+                title: 'Formación de Elite',
+                content: `
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-cyan-500 pl-4 py-1">
+                            <h5 class="text-white font-bold uppercase text-sm">DS4A / Colombia</h5>
+                            <p class="text-cyan-400 text-sm italic font-bold">Graduado con Honores - Data Science (Correlation One / MINTIC)</p>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4 py-1">
+                            <h5 class="text-white font-bold uppercase text-sm">Magíster en TIC</h5>
+                            <p class="text-purple-400 text-sm">Universidad Pontificia Bolivariana</p>
+                        </div>
+                        <div class="border-l-4 border-lime-500 pl-4 py-1">
+                            <h5 class="text-white font-bold uppercase text-sm">Ingeniería Industrial</h5>
+                            <p class="text-lime-400 text-sm">Universidad Católica de Colombia</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function openModal(key) {
+            const data = modalData[key];
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-content').innerHTML = data.content;
+            document.getElementById('modal-container').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-container').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- CHART CONFIGURATION ---
+        function processLabel(label) {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = "";
+            words.forEach(w => {
+                if ((currentLine + w).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = w + " ";
+                } else {
+                    currentLine += w + " ";
+                }
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipConfig = {
+            callbacks: {
+                title: (items) => {
+                    const lbl = items[0].chart.data.labels[items[0].dataIndex];
+                    return Array.isArray(lbl) ? lbl.join(' ') : lbl;
+                }
+            }
+        };
+
+        window.onload = function() {
+            // Team Chart (HDI Seguros)
+            new Chart(document.getElementById('teamChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ingeniería de Datos', 'Gobierno de Datos', 'BI & Reporting', 'Analítica / IA'].map(processLabel),
+                    datasets: [{
+                        data: [30, 20, 25, 25],
+                        backgroundColor: ['#22d3ee', '#818cf8', '#a855f7', '#4ade80'],
+                        borderColor: '#020617',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 10 } } },
+                        tooltip: tooltipConfig
+                    }
+                }
+            });
+
+            // Radar Chart (Matriz de Competencias)
+            new Chart(document.getElementById('radarChart'), {
+                type: 'radar',
+                data: {
+                    labels: ['Liderazgo Estratégico', 'Arquitectura Datos', 'IA Generativa', 'Growth Marketing', 'Full-Stack Dev', 'Gobernanza'].map(processLabel),
+                    datasets: [{
+                        label: 'Nivel Maestro (%)',
+                        data: [98, 95, 95, 80, 92, 97],
+                        fill: true,
+                        backgroundColor: 'rgba(34, 211, 238, 0.2)',
+                        borderColor: '#22d3ee',
+                        pointBackgroundColor: '#22d3ee',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#a855f7'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#94a3b8', font: { size: 12, family: 'Plus Jakarta Sans' } },
+                            ticks: { display: false },
+                            suggestedMin: 50,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: { tooltip: tooltipConfig }
+                }
+            });
+
+            // Reveal Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
+    </script>
+</body>
+</html>
