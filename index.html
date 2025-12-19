@@ -27,7 +27,7 @@
             scroll-behavior: smooth;
         }
 
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+       .font-orbitron { font-family: 'Orbitron', sans-serif; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -40,11 +40,11 @@
             100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
         }
 
-        .animate-float { animation: float 5s ease-in-out infinite; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+       .animate-float { animation: float 5s ease-in-out infinite; }
+       .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+       .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .glass-card {
+       .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
@@ -52,13 +52,13 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .glass-card:hover {
+       .glass-card:hover {
             border-color: var(--accent-cyan);
             transform: scale(1.01);
             box-shadow: 0 0 30px rgba(34, 211, 238, 0.15);
         }
 
-        .chart-container {
+       .chart-container {
             position: relative;
             width: 100%;
             max-width: 700px;
@@ -70,7 +70,7 @@
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
         ::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 10px; }
 
-        .modal {
+       .modal {
             display: none;
             position: fixed;
             inset: 0;
@@ -81,29 +81,29 @@
             justify-content: center;
             padding: 20px;
         }
-        .modal.active { display: flex; }
+       .modal.active { display: flex; }
 
-        .gradient-text {
+       .gradient-text {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .profile-glow {
+       .profile-glow {
             box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
             border: 3px solid var(--accent-cyan);
         }
 
-        .audio-pulse {
+       .audio-pulse {
             animation: pulse-cyan 2s infinite;
         }
 
-        .contact-pill {
+       .contact-pill {
             background: rgba(15, 23, 42, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
-        .contact-pill:hover {
+       .contact-pill:hover {
             border-color: var(--accent-cyan);
             background: rgba(34, 211, 238, 0.05);
         }
@@ -111,7 +111,6 @@
 </head>
 <body class="selection:bg-cyan-500 selection:text-white">
 
-    <!-- MODAL SYSTEM -->
     <div id="modal-container" class="modal" onclick="closeModal(event)">
         <div class="glass-card w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 border-white/10" onclick="event.stopPropagation()">
             <div class="flex justify-between items-start mb-6">
@@ -122,10 +121,8 @@
         </div>
     </div>
 
-    <!-- AUDIO ELEMENT -->
     <audio id="profile-audio" src="public/audio/intro_ai.mp3" preload="auto"></audio>
 
-    <!-- HERO SECTION -->
     <section class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full -z-10 opacity-30">
             <div class="absolute top-[10%] left-[15%] w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full"></div>
@@ -145,7 +142,6 @@
                     Fabio <br><span class="gradient-text">Salinas</span>
                 </h1>
                 
-                <!-- AUDIO CONTROLLER -->
                 <div class="mb-8">
                     <button id="audio-toggle" onclick="toggleAudio()" class="flex items-center gap-3 px-6 py-3 bg-slate-900/80 border border-cyan-500/30 rounded-full hover:bg-slate-800 transition-all group audio-pulse">
                         <span id="audio-icon" class="text-xl">🔊</span>
@@ -197,7 +193,7 @@
         </div>
     </section>
 
-    <!-- HDI SEGUROS SECTION -->
+    <!-- TRAYECTORIA CORPORATIVA -->
     <section id="hdi" class="py-24 px-6 border-t border-white/5">
         <div class="container mx-auto">
              <div class="mb-16 reveal">
@@ -209,17 +205,17 @@
                 <div class="glass-card p-8 border-cyan-500/20 reveal">
                     <div class="text-cyan-400 font-bold mb-2 uppercase text-xs font-mono">2023 - 2024</div>
                     <h3 class="text-xl font-bold text-white mb-2 uppercase">Director de Datos</h3>
-                    <p class="text-sm text-slate-400">Establecimiento de la estrategia de gobernanza e integridad de activos de información.</p>
+                    <p class="text-sm text-slate-400">Gobernanza e integridad de activos de información corporativos.</p>
                 </div>
                 <div class="glass-card p-8 border-white/5 reveal" style="transition-delay: 100ms;">
                     <div class="text-slate-400 font-bold mb-2 uppercase text-xs font-mono">2024 - 2025</div>
                     <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos</h3>
-                    <p class="text-sm text-slate-400">Escalamiento de la arquitectura hacia modelos de toma de decisiones masivos.</p>
+                    <p class="text-sm text-slate-400">Modernización y escalamiento hacia Lakehouse en AWS.</p>
                 </div>
                 <div class="glass-card p-8 border-purple-500/20 reveal" style="transition-delay: 200ms;">
                     <div class="text-fuchsia-400 font-bold mb-2 uppercase text-xs font-mono">Oct 2025 - Presente</div>
                     <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos y Analítica</h3>
-                    <p class="text-sm text-slate-400">Liderazgo integral del Roadmap de IA y equipos multidisciplinares de alto desempeño.</p>
+                    <p class="text-sm text-slate-400">Liderazgo estratégico del Roadmap de IA definitivo.</p>
                 </div>
             </div>
 
@@ -227,7 +223,7 @@
                 <div class="reveal">
                     <h3 class="text-3xl font-bold text-white mb-6 uppercase">Mando Estratégico</h3>
                     <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                        Como Gerente de Datos y Analítica, orquesto un equipo multidisciplinario enfocado en convertir el dato en ingresos y eficiencia. Mi gestión abarca Ingeniería de Datos (Lakehouse AWS), Gobierno, BI y el despliegue de iniciativas disruptivas de IA.
+                        Gestiono un ecosistema integral de datos. Bajo mi supervisión, las verticales de Ingeniería, Gobierno, BI y Analítica funcionan como un motor de innovación para la toma de decisiones estratégicas.
                     </p>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800">
@@ -249,22 +245,77 @@
         </div>
     </section>
 
+    <!-- CIMIENTOS DE INGENIERÍA -->
+    <section class="py-24 px-6 border-t border-white/5 bg-slate-900/30">
+        <div class="container mx-auto">
+            <div class="mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 uppercase">Cimientos de Ingeniería</h2>
+                <p class="text-slate-400 italic">Trayectoria técnica profunda y desarrollo de software (2015-2023)</p>
+                <div class="h-1 w-24 bg-lime-500 mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-card p-8 hover:border-lime-500/30 group reveal">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-lime-400 font-mono text-xs uppercase mb-1">2022 - 2023</div>
+                            <h3 class="text-2xl font-bold text-white">Data Engineer</h3>
+                            <p class="text-slate-400 text-sm">Kibernum (Cuenta: ADRetail)</p>
+                        </div>
+                        <span class="text-3xl">🛠️</span>
+                    </div>
+                    <p class="text-slate-400 mb-6">
+                        Diseño de infraestructuras para ingestión masiva de datos en GCP. Automatización de procesos legados on-premise hacia la nube.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">GCP Composer</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">Airflow</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">Bash Scripting</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">Pub/Sub</span>
+                    </div>
+                    <button onclick="openModal('kibernum')" class="w-full py-3 border border-white/10 rounded-lg text-sm uppercase tracking-widest hover:bg-white/5 transition">Detalles de Ingeniería</button>
+                </div>
+
+                <div class="glass-card p-8 hover:border-cyan-500/30 group reveal" style="transition-delay: 100ms;">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-cyan-400 font-mono text-xs uppercase mb-1">2021 - 2022</div>
+                            <h3 class="text-2xl font-bold text-white">Data Scientist / Engineer</h3>
+                            <p class="text-slate-400 text-sm">Globant (Disney & Google)</p>
+                        </div>
+                        <span class="text-3xl">🚀</span>
+                    </div>
+                    <p class="text-slate-400 mb-6">
+                        Desarrollo de pipelines de datos críticos con latencia mínima y procesamiento distribuido de alta eficiencia.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">Java</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">Apache Beam</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">BigQuery</span>
+                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">Dataflow</span>
+                    </div>
+                    <button onclick="openModal('globant')" class="w-full py-3 border border-white/10 rounded-lg text-sm uppercase tracking-widest hover:bg-white/5 transition">Detalles Técnicos</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- INNOVATION LAB - FIN-LY.ME -->
     <section class="py-24 bg-slate-950/50 border-y border-white/5 px-6">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
                 <div>
                     <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">Innovation Lab: <span class="gradient-text">Fin-ly.me</span></h2>
-                    <p class="text-slate-400 text-xl">Donde la teoría se convierte en automatización pura con IA.</p>
+                    <p class="text-slate-400 text-xl">Ejecución Full Stack y Agentes Autónomos de IA.</p>
                 </div>
-                <button onclick="openModal('finly-stack')" class="mt-6 md:mt-0 px-6 py-3 bg-purple-600 rounded-xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-purple-900/20">Ver Tech Stack E2E</button>
+                <button onclick="openModal('finly-stack')" class="mt-6 md:mt-0 px-6 py-3 bg-purple-600 rounded-xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-purple-900/20">Ver Stack Completo</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
                 <div class="glass-card p-6 border-white/5 group">
                     <div class="text-3xl mb-4">🧩</div>
                     <h4 class="font-bold text-white mb-2 uppercase">n8n Logic</h4>
-                    <p class="text-sm text-slate-400">Backend asíncrono, OCR con IA y procesamiento de extractos.</p>
+                    <p class="text-sm text-slate-400">Backend asíncrono, OCR con IA y procesamiento complejo.</p>
                 </div>
                 <div class="glass-card p-6 border-white/5 group">
                     <div class="text-3xl mb-4">⚡</div>
@@ -299,11 +350,11 @@
                     <div class="glass-card p-6 border-cyan-500/30">
                         <h4 class="text-xl font-bold text-white mb-4 uppercase">Estrategia & Ejecución</h4>
                         <p class="text-slate-400 leading-relaxed">
-                            Mi perfil equilibra el liderazgo estratégico con una ejecución técnica profunda. Desde la definición de Roadmaps de Datos en HDI hasta el desarrollo Full Stack de agentes de IA en Fin-ly, mi enfoque es siempre hacia la generación de valor.
+                            Equilibrio crítico entre liderazgo corporativo y ejecución técnica de élite. Mi trayectoria demuestra una capacidad única para diseñar estrategias y bajar al código para hacerlas realidad.
                         </p>
                     </div>
                     <button onclick="openModal('education')" class="w-full py-4 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-2xl font-bold text-white uppercase tracking-widest hover:opacity-90 transition shadow-xl">
-                        Ver Formación & Honores Académicos
+                        Ver Educación & Honores Académicos
                     </button>
                 </div>
             </div>
@@ -371,25 +422,63 @@
                     </div>
                 `
             },
+            'kibernum': {
+                title: 'Kibernum / ADRetail - Ingeniería Profunda',
+                content: `
+                    <div class="space-y-4 text-sm">
+                        <div class="border-l-2 border-lime-500 pl-4">
+                            <h5 class="text-white font-bold">Ingestión Híbrida Masiva</h5>
+                            <p class="text-slate-400">Implementación de pipelines para mover datos desde fuentes legacy (Oracle, Netezza) hacia Google Cloud Platform (GCP). Desarrollo de <strong>Shell Scripts en Linux</strong> para automatización segura.</p>
+                        </div>
+                        <div class="border-l-2 border-lime-500 pl-4">
+                            <h5 class="text-white font-bold">Orquestación con Airflow</h5>
+                            <p class="text-slate-400">Configuración avanzada de <strong>Cloud Composer</strong> para gestionar flujos de trabajo ETL complejos y transformaciones de datos críticas.</p>
+                        </div>
+                        <div class="border-l-2 border-lime-500 pl-4">
+                            <h5 class="text-white font-bold">Arquitectura Event-Driven</h5>
+                            <p class="text-slate-400">Integración de <strong>Pub/Sub</strong> para activar Cloud Functions, permitiendo comunicación asíncrona y escalable entre componentes de datos.</p>
+                        </div>
+                    </div>
+                `
+            },
+            'globant': {
+                title: 'Globant - Escala Global (Disney/Google)',
+                content: `
+                    <div class="space-y-4 text-sm">
+                        <div class="border-l-2 border-cyan-500 pl-4">
+                            <h5 class="text-white font-bold">Proyecto Disney: Telemetría Real-Time</h5>
+                            <p class="text-slate-400">Desarrollo de ETLs en <strong>Java</strong> para extraer datos de New Relic cada 15 min, transformándolos para carga en BigQuery.</p>
+                        </div>
+                        <div class="border-l-2 border-cyan-500 pl-4">
+                            <h5 class="text-white font-bold">Proyecto Google: Migraciones Cloud</h5>
+                            <p class="text-slate-400">Uso de <strong>Storage Transfer Service</strong> para mover petabytes entre AWS y GCP. Diseño de DAGs en Airflow integrando operadores complejos.</p>
+                        </div>
+                        <div class="border-l-2 border-cyan-500 pl-4">
+                            <h5 class="text-white font-bold">Procesamiento Serverless</h5>
+                            <p class="text-slate-400">Implementación de scripts en <strong>Python con Apache Beam</strong> ejecutados sobre Dataflow para transformaciones distribuidas.</p>
+                        </div>
+                    </div>
+                `
+            },
             'finly-stack': {
                 title: 'Fin-ly.me Tech Stack',
                 content: `
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
                             <h5 class="text-cyan-400 font-bold uppercase text-xs">Backend & Automatización</h5>
-                            <p class="text-sm">n8n (Workflows asíncronos), OCR con IA, Integración de múltiples APIs (Meta, Google, TikTok, Evolution API).</p>
+                            <p class="text-sm">n8n, Python, SQL, OpenRouter API.</p>
                         </div>
                         <div class="space-y-4">
                             <h5 class="text-purple-400 font-bold uppercase text-xs">Cloud & Data</h5>
-                            <p class="text-sm">Supabase (PostgreSQL, Edge Functions, RLS, DWH automático), GitHub CI/CD.</p>
+                            <p class="text-sm">Supabase (PostgreSQL, Edge Functions), GitHub CI/CD.</p>
                         </div>
                         <div class="space-y-4">
                             <h5 class="text-lime-400 font-bold uppercase text-xs">IA & Frontend</h5>
-                            <p class="text-sm">Gemini CLI, Claude Code, Cursor, Lovable (Vite), Agentes RAG (Finly Coach).</p>
+                            <p class="text-sm">Gemini CLI, Cursor, Lovable (Vite), Agentes RAG (Finly Coach).</p>
                         </div>
                         <div class="space-y-4">
-                            <h5 class="text-orange-400 font-bold uppercase text-xs">Multimedia & Ads</h5>
-                            <p class="text-sm">Heygen (Vídeo), ElevenLabs (Audio), Meta Ads API, Google Analytics API.</p>
+                            <h5 class="text-orange-400 font-bold uppercase text-xs">Multimedia</h5>
+                            <p class="text-sm">Heygen, ElevenLabs, Meta Ads API.</p>
                         </div>
                     </div>
                 `
@@ -449,7 +538,8 @@
         const tooltipConfig = {
             callbacks: {
                 title: (items) => {
-                    const lbl = items[0].chart.data.labels[items[0].dataIndex];
+                    const chartData = items[0].chart.data;
+                    const lbl = chartData.labels[items[0].dataIndex];
                     return Array.isArray(lbl) ? lbl.join(' ') : lbl;
                 }
             }
@@ -478,13 +568,13 @@
                 }
             });
 
-            // Radar Chart - CALIFICACIONES MAESTRAS
+            // Radar Chart
             new Chart(document.getElementById('radarChart'), {
                 type: 'radar',
                 data: {
                     labels: ['Liderazgo Estratégico', 'Arquitectura Datos', 'IA Generativa', 'Growth Marketing', 'Full-Stack Dev', 'Gobernanza'].map(processLabel),
                     datasets: [{
-                        label: 'Dominio (%)',
+                        label: 'Dominio Profesional (%)',
                         data: [98, 95, 95, 80, 92, 97],
                         fill: true,
                         backgroundColor: 'rgba(34, 211, 238, 0.2)',
@@ -511,7 +601,6 @@
                 }
             });
 
-            // Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
             }, { threshold: 0.1 });
