@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <title>Infografía Perfil - Fabio Salinas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/dcd963032b.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: '#020617',
+                        card: '#0f172a',
+                        cyan: '#22d3ee',
+                        purple: '#a855f7',
+                        lime: '#84cc16',
+                        rose: '#f43f5e'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: #020617;
+            color: white;
+            width: 1200px;
+            /* Fixed width for consistent infographic sizing */
+            margin: 0 auto;
+            overflow: hidden;
+            /* No scrollbars in screenshot */
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+
+<body class="font-jakarta grid-bg pb-20">
+
+    <!-- HEADER -->
+    <header class="p-12 text-center border-b border-white/10 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 via-purple-500 to-rose-500"></div>
+        <div class="inline-block relative mb-6">
+            <img src="https://avatars.githubusercontent.com/u/39883976"
+                class="w-48 h-48 rounded-full border-4 border-cyan-500 shadow-[0_0_40px_rgba(34,211,238,0.3)]">
+            <div
+                class="absolute bottom-2 right-2 bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full border border-white">
+                SYS: ONLINE</div>
+        </div>
+        <h1 class="text-6xl font-orbitron font-black text-white mb-2 tracking-tighter">FABIO <span
+                class="text-cyan-400 neon-text">SALINAS</span></h1>
+        <p class="text-2xl text-slate-400 font-light mb-6">Arquitecto de Inteligencia & Líder Agéntico</p>
+
+        <div class="flex justify-center gap-8 text-sm font-mono text-slate-500 uppercase tracking-widest">
+            <span><i class="fas fa-database text-purple-400 mr-2"></i>Data Lakehouse</span>
+            <span><i class="fas fa-robot text-cyan-400 mr-2"></i>Agentic AI</span>
+            <span><i class="fas fa-rocket text-lime-400 mr-2"></i>Fintech Innovation</span>
+        </div>
+    </header>
+
+    <!-- MANIFIESTO -->
+    <section class="p-12">
+        <div class="glass p-8 rounded-3xl border-l-8 border-purple-500 relative">
+            <i class="fas fa-quote-left text-6xl text-purple-500/20 absolute top-4 left-4"></i>
+            <h2 class="text-2xl font-orbitron font-bold text-white mb-4 pl-4">MANIFIESTO DEL LÍDER HÍBRIDO</h2>
+            <p class="text-lg text-slate-300 leading-relaxed pl-4 relative z-10">
+                "La verdadera transformación digital no ocurre en el código ni en la sala de juntas, sino en el puente
+                entre ambos. Mi carrera es la prueba viviente de esa evolución: de la optimización industrial a la
+                arquitectura de decisiones autónomas. En un mundo donde la ventaja competitiva reside en la velocidad de
+                adaptación, yo no solo gestiono el cambio; lo programo, lo orquesto y lo lidero."
+            </p>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section class="px-12 py-6">
+        <h2
+            class="text-4xl font-orbitron font-bold text-white mb-10 w-full border-b border-white/10 pb-4 flex items-center gap-4">
+            <i class="fas fa-history text-cyan-400"></i> CRONOLOGÍA PROFESIONAL
+        </h2>
+
+        <div class="space-y-8 relative border-l-2 border-slate-700 ml-4 pl-8">
+
+            <!-- HDI -->
+            <div class="relative">
+                <div
+                    class="absolute -left-[45px] w-8 h-8 bg-purple-600 rounded-full border-4 border-slate-900 shadow-[0_0_20px_#a855f7] flex items-center justify-center text-xs">
+                    25</div>
+                <div class="glass p-6 rounded-xl border border-white/5">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Gerente de Datos y Analítica</h3>
+                            <div class="text-purple-400 font-mono text-sm">HDI Seguros | Oct 2025 - Actualidad</div>
+                        </div>
+                        <i class="fas fa-building text-3xl text-slate-700"></i>
+                    </div>
+                    <p class="text-slate-400 mb-4">Unificación total de ingeniería y ciencia de datos. Gobernanza de
+                        activos y transformación cultural.</p>
+                    <div class="flex gap-2">
+                        <span class="bg-purple-500/10 text-purple-300 px-2 py-1 rounded text-xs">C-Suite Strategy</span>
+                        <span class="bg-purple-500/10 text-purple-300 px-2 py-1 rounded text-xs">Lakehouse</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HDI PREV -->
+            <div class="relative">
+                <div class="absolute -left-[41px] w-6 h-6 bg-cyan-600 rounded-full border-4 border-slate-900"></div>
+                <div class="glass p-6 rounded-xl border border-white/5 opacity-80">
+                    <h3 class="text-xl font-bold text-white">Gerente de Datos / Director</h3>
+                    <div class="text-cyan-400 font-mono text-sm">HDI Seguros | Mar 2023 - Dic 2025</div>
+                    <p class="text-slate-400 mt-2 text-sm">Consolidación de infraestructura, Data Governance y
+                        construcción de capacidades iniciales.</p>
+                </div>
+            </div>
+
+            <!-- KIBERNUM -->
+            <div class="relative">
+                <div class="absolute -left-[41px] w-6 h-6 bg-lime-600 rounded-full border-4 border-slate-900"></div>
+                <div class="glass p-6 rounded-xl border border-white/5 opacity-80">
+                    <h3 class="text-xl font-bold text-white">Data Engineer (ADRetail)</h3>
+                    <div class="text-lime-400 font-mono text-sm">Kibernum | Abr 2022 - Mar 2023</div>
+                    <p class="text-slate-400 mt-2 text-sm">Ingeniería de ingesta híbrida masiva. Orquestación con
+                        Airflow y scripting Bash avanzado para Retail.</p>
+                </div>
+            </div>
+
+            <!-- GLOBANT -->
+            <div class="relative">
+                <div class="absolute -left-[41px] w-6 h-6 bg-rose-600 rounded-full border-4 border-slate-900"></div>
+                <div class="glass p-6 rounded-xl border border-white/5 opacity-80">
+                    <h3 class="text-xl font-bold text-white">Data Scientist / Engineer</h3>
+                    <div class="text-rose-400 font-mono text-sm">Globant (Disney & Google) | Ago 2021 - Feb 2022</div>
+                    <p class="text-slate-400 mt-2 text-sm">Proyectos globales: Telemetría para Disney y migraciones de
+                        Petabytes para Google Cloud.</p>
+                </div>
+            </div>
+
+            <!-- SBS -->
+            <div class="relative">
+                <div class="absolute -left-[41px] w-6 h-6 bg-slate-600 rounded-full border-4 border-slate-900"></div>
+                <div class="glass p-6 rounded-xl border border-white/5 opacity-70">
+                    <h3 class="text-xl font-bold text-white">Director Business Intelligence</h3>
+                    <div class="text-slate-400 font-mono text-sm">SBS Seguros | May 2017 - Ago 2021</div>
+                    <p class="text-slate-400 mt-2 text-sm">Democratización de datos, Data Marts y modelos predictivos de
+                        Churn.</p>
+                </div>
+            </div>
+
+            <!-- FOUNDATIONS -->
+            <div class="relative">
+                <div class="absolute -left-[41px] w-6 h-6 bg-slate-800 rounded-full border-4 border-slate-900"></div>
+                <div class="p-4 border border-dashed border-slate-700 rounded-xl">
+                    <h3 class="text-lg font-bold text-slate-500">Fundamentos Operativos (2011-2017)</h3>
+                    <div class="grid grid-cols-3 gap-4 mt-2 text-center">
+                        <div class="bg-slate-900 p-2 rounded">
+                            <div class="font-bold text-slate-300">JLT Affinity</div>
+                            <div class="text-xs text-slate-600">Ops Chief</div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded">
+                            <div class="font-bold text-slate-300">AIG</div>
+                            <div class="text-xs text-slate-600">Warranty Analyst</div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded">
+                            <div class="font-bold text-slate-300">Cardif</div>
+                            <div class="text-xs text-slate-600">Incentives</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE STUDY: FINLY -->
+    <section class="p-12 bg-slate-900/50 my-8 border-y border-cyan-900/30">
+        <h2
+            class="text-4xl font-orbitron font-bold text-white mb-8 border-b border-white/10 pb-4 flex items-center gap-4">
+            <i class="fas fa-microchip text-lime-400"></i> CASE STUDY: FINLY
+        </h2>
+
+        <div class="grid grid-cols-2 gap-8">
+            <div class="glass p-6 rounded-2xl border border-lime-500/30">
+                <h3 class="text-2xl font-bold text-white mb-2">Arquitectura "Agent-First"</h3>
+                <p class="text-slate-400 mb-6 font-light">Ecosistema Fintech construido mediante orquestación de IAs.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 bg-black/40 p-3 rounded-lg">
+                        <i class="fab fa-google text-2xl text-white"></i>
+                        <div>
+                            <div class="font-bold text-white text-sm">Google Antigravity</div>
+                            <div class="text-xs text-slate-500">IDE & Agent Manager</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-black/40 p-3 rounded-lg">
+                        <i class="fas fa-terminal text-2xl text-lime-400"></i>
+                        <div>
+                            <div class="font-bold text-white text-sm">Claude Code</div>
+                            <div class="text-xs text-slate-500">Ingeniería en Terminal</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-black/40 p-3 rounded-lg">
+                        <i class="fas fa-magic text-2xl text-purple-400"></i>
+                        <div>
+                            <div class="font-bold text-white text-sm">Lovable + React</div>
+                            <div class="text-xs text-slate-500">Generación Frontend</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-6 rounded-2xl border border-cyan-500/30">
+                <h3 class="text-2xl font-bold text-white mb-2">Stack Técnico</h3>
+                <div class="grid grid-cols-2 gap-4 mt-6">
+                    <div class="bg-slate-800 p-3 rounded border-l-4 border-blue-500">
+                        <div class="text-xs text-slate-500 uppercase">Backend</div>
+                        <div class="font-bold">Supabase</div>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded border-l-4 border-green-500">
+                        <div class="text-xs text-slate-500 uppercase">Automation</div>
+                        <div class="font-bold">n8n</div>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded border-l-4 border-teal-500">
+                        <div class="text-xs text-slate-500 uppercase">Messaging</div>
+                        <div class="font-bold">Evolution API</div>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded border-l-4 border-yellow-500">
+                        <div class="text-xs text-slate-500 uppercase">Framework</div>
+                        <div class="font-bold">Vite + TS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS & ACADEMIA -->
+    <section class="p-12 grid grid-cols-2 gap-12">
+        <!-- ACADEMIA -->
+        <div>
+            <h2 class="text-3xl font-orbitron font-bold text-white mb-6 border-b border-white/10 pb-2">
+                <i class="fas fa-graduation-cap text-rose-400"></i> ACADEMIA
+            </h2>
+            <ul class="space-y-4">
+                <li class="bg-white/5 p-4 rounded-lg border-l-4 border-rose-500">
+                    <div class="font-bold text-white">Maestría en TIC</div>
+                    <div class="text-sm text-slate-400">Univ. Pontificia Bolivariana (2020-2023)</div>
+                </li>
+                <li class="bg-white/5 p-4 rounded-lg border-l-4 border-rose-500">
+                    <div class="font-bold text-white">DS4A / Colombia (Top 1%)</div>
+                    <div class="text-sm text-slate-400">Correlation One (2019)</div>
+                </li>
+                <li class="bg-white/5 p-4 rounded-lg border-l-4 border-rose-500">
+                    <div class="font-bold text-white">Esp. Inteligencia de Negocios</div>
+                    <div class="text-sm text-slate-400">Univ. Pontificia Bolivariana (2019-2020)</div>
+                </li>
+                <li class="bg-white/5 p-4 rounded-lg border-l-4 border-rose-500">
+                    <div class="font-bold text-white">Ingeniero Industrial</div>
+                    <div class="text-sm text-slate-400">Univ. Católica (2010-2015)</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- SKILLS -->
+        <div>
+            <h2 class="text-3xl font-orbitron font-bold text-white mb-6 border-b border-white/10 pb-2">
+                <i class="fas fa-layer-group text-cyan-400"></i> HARD SKILLS
+            </h2>
+            <div class="space-y-6">
+                <div>
+                    <div class="flex justify-between text-sm mb-1"><span class="font-bold text-cyan-300">Data
+                            Engineering (GCP/AWS)</span> <span>98%</span></div>
+                    <div class="h-2 bg-slate-800 rounded-full">
+                        <div class="h-full w-[98%] bg-cyan-500 rounded-full"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1"><span class="font-bold text-purple-300">AI Agents &
+                            LLMs</span> <span>95%</span></div>
+                    <div class="h-2 bg-slate-800 rounded-full">
+                        <div class="h-full w-[95%] bg-purple-500 rounded-full"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1"><span class="font-bold text-lime-300">BI & Analytics
+                            Strategy</span> <span>96%</span></div>
+                    <div class="h-2 bg-slate-800 rounded-full">
+                        <div class="h-full w-[96%] bg-lime-500 rounded-full"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1"><span class="font-bold text-rose-300">Leadership &
+                            Governance</span> <span>92%</span></div>
+                    <div class="h-2 bg-slate-800 rounded-full">
+                        <div class="h-full w-[92%] bg-rose-500 rounded-full"></div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700 text-xs shadow">Python</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700 text-xs shadow">SQL</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700 text-xs shadow">React</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700 text-xs shadow">Airflow</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700 text-xs shadow">BigQuery</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700 text-xs shadow">Docker</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="p-8 text-center bg-black/40 border-t border-white/5 mt-auto">
+        <div class="text-slate-500 text-sm font-mono mb-2">INFOGRAPHIC GENERATED BY AGENTIC SYSTEM | ID: FNS-2025</div>
+        <div class="text-xl font-bold text-white tracking-widest">FNSALINAS.GITHUB.IO</div>
+    </footer>
+
+</body>
+
+</html>

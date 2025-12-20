@@ -62,12 +62,19 @@
             border-radius: 4px;
         }
 
+        /* OPTIMIZED FOR MOBILE PERFORMANCE */
         .glass-panel {
             background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Only apply heavy blur on larger screens to avoid mobile rendering artifacts */
+        @media (min-width: 768px) {
+            .glass-panel {
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+            }
         }
 
         .neon-border {
@@ -96,15 +103,27 @@
             text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
         }
 
+        /* ROBUST ANIMATION LOGIC */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+            /* Hardware Acceleration hints */
         }
 
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Mobile Fallback: If JS fails or device is slow, ensure visibility */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
         }
 
         .tech-pill {
@@ -122,7 +141,6 @@
             opacity: 1;
         }
 
-        /* Specific List Styles for Modals */
         .modal-list li {
             @apply mb-3 pb-3 border-b border-white/5 last:border-0;
         }
@@ -143,7 +161,8 @@
 
     <!-- NAVIGATION -->
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl">
-        <div class="glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-2xl shadow-cyan-900/20">
+        <div
+            class="glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-2xl shadow-cyan-900/20 bg-slate-900/80 backdrop-blur-md">
             <span
                 class="font-orbitron font-bold text-cyan-400 text-sm tracking-widest hover:text-white cursor-pointer transition"
                 onclick="window.scrollTo(0,0)">FNS.AI</span>
@@ -838,9 +857,11 @@
                             <span><strong>Single Source of Truth:</strong> Eliminación de silos informativos.</span>
                         </li>
                         <li class="flex items-center"><i class="fas fa-shield-alt text-purple-400 w-6"></i>
-                            <span><strong>Gobierno & Compliance:</strong> Seguridad y trazabilidad del dato.</span></li>
+                            <span><strong>Gobierno & Compliance:</strong> Seguridad y trazabilidad del dato.</span>
+                        </li>
                         <li class="flex items-center"><i class="fas fa-chart-network text-purple-400 w-6"></i>
-                            <span><strong>Analítica Self-Service:</strong> Empoderamiento del usuario final.</span></li>
+                            <span><strong>Analítica Self-Service:</strong> Empoderamiento del usuario final.</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -886,7 +907,8 @@
             document.body.style.overflow = 'auto';
         }
 
-        window.onload = function () {
+        window.addEventListener('load', function () {
+            // Chart Configuration
             const ctx = document.getElementById('skillsChart').getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 400);
             gradient.addColorStop(0, 'rgba(34, 211, 238, 0.4)');
@@ -908,6 +930,7 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false, // Better for mobile
                     scales: {
                         r: {
                             angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
@@ -921,11 +944,28 @@
                 }
             });
 
+            // Robust Reveal Animation
+            const observerOptions = {
+                threshold: 0, // Trigger as soon as 1 pixel is visible
+                rootMargin: "0px 0px -50px 0px" // Slight offset
+            };
+
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-            }, { threshold: 0.1 });
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Efficiency: stop watching once revealed
+                    }
+                });
+            }, observerOptions);
+
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        };
+
+            // Failsafe: Force reveal all elements after 2 seconds to prevent eternal invisibility
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+            }, 2000);
+        });
     </script>
 </body>
 
