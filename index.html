@@ -1,603 +1,923 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabio Salinas | Data & AI Intelligence Architect</title>
+    <title>Fabio Salinas | Arquitecto de Inteligencia & Líder Agéntico</title>
+
+    <!-- EXTERNAL RESOURCES -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
+    <!-- TAILWIND CONFIGURATION -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        deep: '#020617',
+                        glass: 'rgba(15, 23, 42, 0.6)',
+                        cyan: { DEFAULT: '#22d3ee', glow: '#22d3ee80' },
+                        purple: { DEFAULT: '#a855f7', glow: '#a855f780' },
+                        lime: { DEFAULT: '#84cc16', glow: '#84cc1680' },
+                        rose: { DEFAULT: '#f43f5e', glow: '#f43f5e80' }
+                    },
+                    backgroundImage: {
+                        'cyber-grid': "radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.05) 1px, transparent 1px)",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg-deep: #020617;
-            --accent-cyan: #22d3ee;
-            --accent-purple: #a855f7;
-            --accent-lime: #4ade80;
-            --glass-bg: rgba(15, 23, 42, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-deep);
-            color: #f8fafc;
+            background-color: #020617;
+            color: #e2e8f0;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-       .font-orbitron { font-family: 'Orbitron', sans-serif; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        @keyframes pulse-cyan {
-            0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
         }
 
-       .animate-float { animation: float 5s ease-in-out infinite; }
-       .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-       .reveal.active { opacity: 1; transform: translateY(0); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #22d3ee, #a855f7);
+            border-radius: 4px;
+        }
 
-       .glass-card {
-            background: var(--glass-bg);
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-       .glass-card:hover {
-            border-color: var(--accent-cyan);
-            transform: scale(1.01);
-            box-shadow: 0 0 30px rgba(34, 211, 238, 0.15);
-        }
-
-       .chart-container {
+        .neon-border {
             position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-            height: 350px;
+            z-index: 1;
+            overflow: hidden;
         }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 10px; }
-
-       .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            background: rgba(2, 6, 23, 0.96);
-            backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-       .modal.active { display: flex; }
-
-       .gradient-text {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(45deg, #22d3ee, transparent, #a855f7);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
         }
 
-       .profile-glow {
-            box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
-            border: 3px solid var(--accent-cyan);
+        .text-glow {
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
         }
 
-       .audio-pulse {
-            animation: pulse-cyan 2s infinite;
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
 
-       .contact-pill {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-       .contact-pill:hover {
-            border-color: var(--accent-cyan);
-            background: rgba(34, 211, 238, 0.05);
+
+        .tech-pill {
+            @apply px-3 py-1 text-xs font-mono rounded-full border border-white/10 bg-white/5 text-slate-300;
+        }
+
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .modal.open {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        /* Specific List Styles for Modals */
+        .modal-list li {
+            @apply mb-3 pb-3 border-b border-white/5 last:border-0;
+        }
+
+        .modal-list strong {
+            @apply text-cyan-400 block mb-1;
+        }
+
+        .modal-list span {
+            @apply text-xs text-slate-500 block;
         }
     </style>
 </head>
-<body class="selection:bg-cyan-500 selection:text-white">
 
-    <div id="modal-container" class="modal" onclick="closeModal(event)">
-        <div class="glass-card w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 border-white/10" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-start mb-6">
-                <h2 id="modal-title" class="text-3xl font-orbitron font-bold gradient-text">Detalle</h2>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-3xl font-bold">&times;</button>
-            </div>
-            <div id="modal-content" class="text-slate-300 space-y-4 text-lg"></div>
-        </div>
-    </div>
+<body class="font-jakarta selection:bg-cyan-500/30 selection:text-cyan-200">
 
     <audio id="profile-audio" src="public/audio/intro_ai.mp3" preload="auto"></audio>
 
-    <section class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full -z-10 opacity-30">
-            <div class="absolute top-[10%] left-[15%] w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full"></div>
-            <div class="absolute bottom-[10%] right-[15%] w-96 h-96 bg-purple-500/20 blur-[100px] rounded-full"></div>
+    <!-- NAVIGATION -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl">
+        <div class="glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-2xl shadow-cyan-900/20">
+            <span
+                class="font-orbitron font-bold text-cyan-400 text-sm tracking-widest hover:text-white cursor-pointer transition"
+                onclick="window.scrollTo(0,0)">FNS.AI</span>
+            <div class="hidden md:flex gap-6 text-xs font-bold uppercase tracking-wider text-slate-400">
+                <a href="#hdi" class="hover:text-white transition">Corporativo</a>
+                <a href="#finly" class="hover:text-white transition">Innovación</a>
+                <a href="#legacy" class="hover:text-white transition">Legado</a>
+                <a href="#matrix" class="hover:text-white transition">Skills</a>
+            </div>
+            <button onclick="toggleAudio()" id="audio-btn"
+                class="flex items-center gap-2 text-xs font-bold text-purple-400 hover:text-purple-300 transition uppercase border border-purple-500/30 rounded-full px-3 py-1">
+                <span id="audio-icon" class="animate-pulse"><i class="fas fa-play"></i></span> Briefing
+            </button>
         </div>
+    </nav>
 
-        <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="reveal">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold mb-6">
-                    <span class="relative flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
-                    </span>
-                    ESTADO: GERENTE DE DATOS Y ANALÍTICA
-                </div>
-                <h1 class="text-6xl md:text-8xl font-orbitron font-bold leading-tight mb-4">
-                    Fabio <br><span class="gradient-text">Salinas</span>
-                </h1>
-                
-                <div class="mb-8">
-                    <button id="audio-toggle" onclick="toggleAudio()" class="flex items-center gap-3 px-6 py-3 bg-slate-900/80 border border-cyan-500/30 rounded-full hover:bg-slate-800 transition-all group audio-pulse">
-                        <span id="audio-icon" class="text-xl">🔊</span>
-                        <div class="text-left">
-                            <span class="block text-xs font-bold text-cyan-400 uppercase tracking-widest">AI Profile Briefing</span>
-                            <span id="audio-status" class="text-slate-400 text-xs">Click para escuchar intro</span>
-                        </div>
-                    </button>
-                </div>
+    <!-- BACKGROUND FX -->
+    <div class="fixed inset-0 z-[-1] bg-deep bg-[size:40px_40px] bg-cyber-grid opacity-20"></div>
+    <div
+        class="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow">
+    </div>
+    <div class="fixed bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-cyan-600/20 rounded-full blur-[120px] animate-pulse-slow"
+        style="animation-delay: 2s;"></div>
 
-                <p class="text-xl md:text-2xl text-slate-400 font-light mb-8 max-w-xl">
-                    Arquitecto de ecosistemas de inteligencia. Líder en <span class="text-white font-semibold">Lakehouse</span>, <span class="text-white font-semibold">Gobernanza de Datos</span> y <span class="text-white font-semibold">IA Generativa</span>.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 mb-10">
-                    <button onclick="openModal('intro')" class="px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-900/20 uppercase tracking-widest text-xs">
-                        PERFIL MAESTRO
-                    </button>
-                    <a href="#hdi" class="px-8 py-4 border border-slate-700 hover:border-purple-500 text-white font-bold rounded-xl transition-all uppercase tracking-widest text-xs">
-                        EXPLORAR HITOS
-                    </a>
-                </div>
+    <!-- ACTO I: HERO SECTION -->
+    <section class="min-h-screen flex flex-col justify-center items-center px-6 pt-20 relative text-center">
+        <div class="reveal active flex flex-col items-center">
 
-                <div class="flex flex-wrap gap-4">
-                    <a href="mailto:fabio.salinas1982@gmail.com" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
-                        <span>✉️</span> fabio.salinas1982@gmail.com
-                    </a>
-                    <a href="https://www.linkedin.com/in/fabiosalinas" target="_blank" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
-                        <span>👔</span> LinkedIn
-                    </a>
-                    <a href="https://github.com/fnsalinas" target="_blank" class="contact-pill px-4 py-2 rounded-lg flex items-center gap-2 text-sm text-slate-300">
-                        <span>💻</span> GitHub
-                    </a>
+            <div class="relative w-48 h-48 md:w-56 md:h-56 mb-10 animate-float group cursor-pointer"
+                onclick="openModal('profile-modal')">
+                <div
+                    class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition duration-500">
                 </div>
-            </div>
-            
-            <div class="reveal flex justify-center lg:justify-end">
-                <div class="relative w-80 h-80 md:w-96 md:h-96 animate-float">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-3xl rotate-6 opacity-20 blur-xl"></div>
-                    <div class="glass-card h-full w-full flex flex-col items-center justify-center p-6 border-cyan-500/30 overflow-hidden">
-                        <img src="https://avatars.githubusercontent.com/u/39883976" alt="Fabio Salinas" class="w-48 h-48 md:w-64 md:h-64 rounded-2xl object-cover profile-glow mb-6">
-                        <div class="text-center">
-                            <div class="text-xl font-bold text-white mb-1 uppercase font-orbitron">Fabio Salinas</div>
-                            <div class="text-cyan-400 font-mono tracking-tighter uppercase text-xs">📍 Bogotá, Colombia</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TRAYECTORIA CORPORATIVA -->
-    <section id="hdi" class="py-24 px-6 border-t border-white/5">
-        <div class="container mx-auto">
-             <div class="mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 uppercase">Trayectoria HDI Seguros</h2>
-                <div class="h-1 w-32 bg-cyan-500"></div>
-            </div>
-
-             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="glass-card p-8 border-cyan-500/20 reveal">
-                    <div class="text-cyan-400 font-bold mb-2 uppercase text-xs font-mono">2023 - 2024</div>
-                    <h3 class="text-xl font-bold text-white mb-2 uppercase">Director de Datos</h3>
-                    <p class="text-sm text-slate-400">Gobernanza e integridad de activos de información corporativos.</p>
-                </div>
-                <div class="glass-card p-8 border-white/5 reveal" style="transition-delay: 100ms;">
-                    <div class="text-slate-400 font-bold mb-2 uppercase text-xs font-mono">2024 - 2025</div>
-                    <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos</h3>
-                    <p class="text-sm text-slate-400">Modernización y escalamiento hacia Lakehouse en AWS.</p>
-                </div>
-                <div class="glass-card p-8 border-purple-500/20 reveal" style="transition-delay: 200ms;">
-                    <div class="text-fuchsia-400 font-bold mb-2 uppercase text-xs font-mono">Oct 2025 - Presente</div>
-                    <h3 class="text-xl font-bold text-white mb-2 uppercase">Gerente de Datos y Analítica</h3>
-                    <p class="text-sm text-slate-400">Liderazgo estratégico del Roadmap de IA definitivo.</p>
+                <img src="https://avatars.githubusercontent.com/u/39883976" alt="Fabio Salinas Profile"
+                    class="relative z-10 w-full h-full rounded-full object-cover border-4 border-slate-900/80 shadow-2xl grayscale hover:grayscale-0 transition duration-500">
+                <div
+                    class="absolute -bottom-4 bg-slate-900/90 border border-cyan-500/50 text-cyan-400 text-[10px] font-mono px-3 py-1 rounded-full z-20">
+                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block mr-1 animate-pulse"></span> ONLINE
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="reveal">
-                    <h3 class="text-3xl font-bold text-white mb-6 uppercase">Mando Estratégico</h3>
-                    <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                        Gestiono un ecosistema integral de datos. Bajo mi supervisión, las verticales de Ingeniería, Gobierno, BI y Analítica funcionan como un motor de innovación para la toma de decisiones estratégicas.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800">
-                            <div class="text-cyan-500 font-bold text-2xl mb-1">97%</div>
-                            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Gobernanza</div>
-                        </div>
-                        <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800">
-                            <div class="text-purple-500 font-bold text-2xl mb-1">95%</div>
-                            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Arquitectura</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass-card p-8 reveal">
-                    <div class="chart-container">
-                        <canvas id="teamChart"></canvas>
-                    </div>
-                </div>
+            <h1 class="text-5xl md:text-8xl font-orbitron font-black leading-tight mb-6">
+                FABIO <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-rose-400 text-glow">SALINAS</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl text-slate-400 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                <span class="text-white font-medium">Arquitecto de Ecosistemas de Inteligencia.</span><br>
+                Fusionando Data Lakehouse, Estrategia Corporativa y la Economía Agéntica.
+            </p>
+
+            <div class="flex gap-4">
+                <a href="https://linkedin.com/in/fabiosalinas" target="_blank"
+                    class="p-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:text-[#0077b5] hover:border-[#0077b5] hover:bg-[#0077b5]/10 transition-all transform hover:-translate-y-1"
+                    title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/fnsalinas" target="_blank"
+                    class="p-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:text-white hover:border-white hover:bg-white/10 transition-all transform hover:-translate-y-1"
+                    title="GitHub"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://fin-ly.me/oferta-premium" target="_blank"
+                    class="p-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:text-lime-400 hover:border-lime-400 hover:bg-lime-400/10 transition-all transform hover:-translate-y-1"
+                    title="Proyecto Finly"><i class="fas fa-rocket fa-2x"></i></a>
+                <a href="mailto:fabio.salinas1982@gmail.com"
+                    class="p-3 bg-white/5 border border-white/10 rounded-full text-slate-300 hover:text-rose-400 hover:border-rose-400 hover:bg-rose-400/10 transition-all transform hover:-translate-y-1"
+                    title="Email"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+
+            <div class="mt-16 animate-bounce text-slate-600">
+                <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </section>
 
-    <!-- CIMIENTOS DE INGENIERÍA -->
-    <section class="py-24 px-6 border-t border-white/5 bg-slate-900/30">
-        <div class="container mx-auto">
-            <div class="mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 uppercase">Cimientos de Ingeniería</h2>
-                <p class="text-slate-400 italic">Trayectoria técnica profunda y desarrollo de software (2015-2023)</p>
-                <div class="h-1 w-24 bg-lime-500 mt-4"></div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-card p-8 hover:border-lime-500/30 group reveal">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <div class="text-lime-400 font-mono text-xs uppercase mb-1">2022 - 2023</div>
-                            <h3 class="text-2xl font-bold text-white">Data Engineer</h3>
-                            <p class="text-slate-400 text-sm">Kibernum (Cuenta: ADRetail)</p>
-                        </div>
-                        <span class="text-3xl">🛠️</span>
-                    </div>
-                    <p class="text-slate-400 mb-6">
-                        Diseño de infraestructuras para ingestión masiva de datos en GCP. Automatización de procesos legados on-premise hacia la nube.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">GCP Composer</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">Airflow</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">Bash Scripting</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-lime-400">Pub/Sub</span>
-                    </div>
-                    <button onclick="openModal('kibernum')" class="w-full py-3 border border-white/10 rounded-lg text-sm uppercase tracking-widest hover:bg-white/5 transition">Detalles de Ingeniería</button>
-                </div>
-
-                <div class="glass-card p-8 hover:border-cyan-500/30 group reveal" style="transition-delay: 100ms;">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <div class="text-cyan-400 font-mono text-xs uppercase mb-1">2021 - 2022</div>
-                            <h3 class="text-2xl font-bold text-white">Data Scientist / Engineer</h3>
-                            <p class="text-slate-400 text-sm">Globant (Disney & Google)</p>
-                        </div>
-                        <span class="text-3xl">🚀</span>
-                    </div>
-                    <p class="text-slate-400 mb-6">
-                        Desarrollo de pipelines de datos críticos con latencia mínima y procesamiento distribuido de alta eficiencia.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">Java</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">Apache Beam</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">BigQuery</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded text-xs text-cyan-400">Dataflow</span>
-                    </div>
-                    <button onclick="openModal('globant')" class="w-full py-3 border border-white/10 rounded-lg text-sm uppercase tracking-widest hover:bg-white/5 transition">Detalles Técnicos</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INNOVATION LAB - FIN-LY.ME -->
-    <section class="py-24 bg-slate-950/50 border-y border-white/5 px-6">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+    <!-- ACTO II: MANIFIESTO ESTRATÉGICO -->
+    <section class="py-24 px-6 relative">
+        <div class="container mx-auto max-w-5xl glass-panel rounded-3xl p-8 md:p-12 reveal neon-border">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">Innovation Lab: <span class="gradient-text">Fin-ly.me</span></h2>
-                    <p class="text-slate-400 text-xl">Ejecución Full Stack y Agentes Autónomos de IA.</p>
-                </div>
-                <button onclick="openModal('finly-stack')" class="mt-6 md:mt-0 px-6 py-3 bg-purple-600 rounded-xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-purple-900/20">Ver Stack Completo</button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
-                <div class="glass-card p-6 border-white/5 group">
-                    <div class="text-3xl mb-4">🧩</div>
-                    <h4 class="font-bold text-white mb-2 uppercase">n8n Logic</h4>
-                    <p class="text-sm text-slate-400">Backend asíncrono, OCR con IA y procesamiento complejo.</p>
-                </div>
-                <div class="glass-card p-6 border-white/5 group">
-                    <div class="text-3xl mb-4">⚡</div>
-                    <h4 class="font-bold text-white mb-2 uppercase">Supabase Core</h4>
-                    <p class="text-sm text-slate-400">PostgreSQL, Edge Functions, RLS y DWH recurrente.</p>
-                </div>
-                <div class="glass-card p-6 border-white/5 group">
-                    <div class="text-3xl mb-4">🤖</div>
-                    <h4 class="font-bold text-white mb-2 uppercase">RAG Agentes</h4>
-                    <p class="text-sm text-slate-400">Finly Coach: Consultas en lenguaje natural mediante LLMs.</p>
-                </div>
-                <div class="glass-card p-6 border-white/5 group">
-                    <div class="text-3xl mb-4">🎞️</div>
-                    <h4 class="font-bold text-white mb-2 uppercase">Creative IA</h4>
-                    <p class="text-sm text-slate-400">Vídeos hiperrealistas con Heygen y Veo 3.1.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPETENCIAS SECTION -->
-    <section class="py-24 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-center text-4xl font-orbitron font-bold text-white mb-20 reveal uppercase tracking-widest">Matriz de Competencias 360°</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="glass-card p-8 reveal">
-                    <div class="chart-container h-[450px]">
-                        <canvas id="radarChart"></canvas>
-                    </div>
-                </div>
-                <div class="space-y-8 reveal">
-                    <div class="glass-card p-6 border-cyan-500/30">
-                        <h4 class="text-xl font-bold text-white mb-4 uppercase">Estrategia & Ejecución</h4>
-                        <p class="text-slate-400 leading-relaxed">
-                            Equilibrio crítico entre liderazgo corporativo y ejecución técnica de élite. Mi trayectoria demuestra una capacidad única para diseñar estrategias y bajar al código para hacerlas realidad.
-                        </p>
-                    </div>
-                    <button onclick="openModal('education')" class="w-full py-4 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-2xl font-bold text-white uppercase tracking-widest hover:opacity-90 transition shadow-xl">
-                        Ver Educación & Honores Académicos
+                    <h2
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-orbitron font-bold text-3xl mb-6">
+                        MANIFIESTO DEL LÍDER HÍBRIDO
+                    </h2>
+                    <p class="text-slate-300 leading-relaxed mb-6 font-light text-lg">
+                        La verdadera transformación digital no ocurre en el código ni en la sala de juntas, sino en el
+                        puente entre ambos. Mi carrera es la prueba viviente de esa evolución: de la optimización
+                        industrial a la arquitectura de decisiones autónomas.
+                    </p>
+                    <button onclick="openModal('philosophy-modal')"
+                        class="text-cyan-400 hover:text-white font-mono text-sm underline underline-offset-4 decoration-cyan-500/30 hover:decoration-cyan-400 cursor-pointer">
+                        LEER VISIÓN COMPLETA <i class="fas fa-arrow-right ml-1"></i>
                     </button>
                 </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-900/80 p-6 rounded-xl border border-white/5 hover:border-cyan-500/50 transition cursor-help"
+                        title="Visión C-Suite & Gobernanza"><i class="fas fa-brain text-3xl text-cyan-400 mb-2"></i>
+                        <h3 class="font-bold text-white mb-1">Estrategia</h3>
+                        <p class="text-xs text-slate-500">Gobernanza & Visión</p>
+                    </div>
+                    <div class="bg-slate-900/80 p-6 rounded-xl border border-white/5 hover:border-purple-500/50 transition cursor-help"
+                        title="Cloud & Pipelines Masivos"><i class="fas fa-cogs text-3xl text-purple-400 mb-2"></i>
+                        <h3 class="font-bold text-white mb-1">Ingeniería</h3>
+                        <p class="text-xs text-slate-500">Cloud Architecture</p>
+                    </div>
+                    <div class="bg-slate-900/80 p-6 rounded-xl border border-white/5 hover:border-lime-500/50 transition cursor-help"
+                        title="Automatización Cognitiva"><i class="fas fa-robot text-3xl text-lime-400 mb-2"></i>
+                        <h3 class="font-bold text-white mb-1">Agentes</h3>
+                        <p class="text-xs text-slate-500">AI Automation</p>
+                    </div>
+                    <div class="bg-slate-900/80 p-6 rounded-xl border border-white/5 hover:border-rose-500/50 transition cursor-help"
+                        title="ROI & Transformación"><i class="fas fa-chart-line text-3xl text-rose-400 mb-2"></i>
+                        <h3 class="font-bold text-white mb-1">Impacto</h3>
+                        <p class="text-xs text-slate-500">ROI Focused</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 border-t border-white/5 bg-slate-950/80 px-6 text-center">
-        <div class="container mx-auto">
-            <div class="flex flex-col items-center gap-4">
-                <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">FABIO SALINAS // DATA INTELLIGENCE ARCHITECT</p>
-                <div class="flex gap-6 text-2xl">
-                    <a href="mailto:fabio.salinas1982@gmail.com" class="hover:text-cyan-400 transition">✉️</a>
-                    <a href="https://www.linkedin.com/in/fabiosalinas" target="_blank" class="hover:text-cyan-400 transition">👔</a>
-                    <a href="tel:+573212200410" class="hover:text-cyan-400 transition">📱</a>
+    <!-- ACTO III: CORPORATE (HDI) -->
+    <section id="hdi" class="py-32 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-end gap-6 mb-16 reveal">
+                <h2 class="text-6xl md:text-8xl font-orbitron font-black text-white/5 absolute -z-10 select-none">
+                    CORPORATE</h2>
+                <div class="relative z-10">
+                    <div class="text-cyan-400 font-mono text-sm tracking-widest mb-2">2023 — ACTUALIDAD</div>
+                    <h2 class="text-4xl text-white font-bold">Consolidación en HDI Seguros</h2>
                 </div>
-                <p class="text-slate-600 text-xs font-mono uppercase mt-6 tracking-widest">SYSTEM VERSION 2.2 // BOGOTÁ, COLOMBIA // 2025</p>
             </div>
+
+            <div class="space-y-8">
+                <div
+                    class="glass-panel p-8 md:p-12 rounded-3xl border-l-4 border-l-purple-500 reveal group hover:bg-slate-900/50 transition-colors">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <div>
+                            <h3
+                                class="text-3xl font-orbitron font-bold text-white group-hover:text-purple-400 transition">
+                                Gerente de Datos y Analítica</h3>
+                            <p class="text-slate-400 text-sm mt-1">Liderazgo Estratégico del Roadmap de IA Definitivo
+                                (Oct 2025 - Presente)</p>
+                        </div>
+                        <button onclick="openModal('hdi-modal')"
+                            class="bg-purple-500/20 hover:bg-purple-500/40 text-purple-300 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mt-4 md:mt-0 transition flex items-center gap-2">
+                            <i class="fas fa-plus"></i> Ver Detalles
+                        </button>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-slate-300 mb-4 leading-relaxed">Unificación total de las verticales de
+                                ingeniería y ciencia de datos. Responsable de la "Verdad Única" corporativa, gobernanza
+                                de activos y la transformación cultural hacia decisiones basadas en evidencia.</p>
+                            <ul class="space-y-2 text-sm text-slate-400">
+                                <li class="flex items-center gap-2"><span class="text-purple-500"><i
+                                            class="fas fa-check"></i></span> Fusión de equipos (Ingeniería + Data
+                                    Science)</li>
+                                <li class="flex items-center gap-2"><span class="text-purple-500"><i
+                                            class="fas fa-check"></i></span> Gobernanza de Datos & Compliance</li>
+                                <li class="flex items-center gap-2"><span class="text-purple-500"><i
+                                            class="fas fa-check"></i></span> Arquitectura Lakehouse en AWS</li>
+                            </ul>
+                        </div>
+                        <div class="bg-black/30 p-6 rounded-xl border border-white/5">
+                            <div class="text-xs font-mono text-slate-500 mb-4 uppercase flex justify-between">
+                                <span>Performance Metrics</span><i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs text-white mb-1"><span>Adopción de
+                                            Analítica</span> <span>94%</span></div>
+                                    <div class="h-1 bg-slate-800 rounded-full overflow-hidden relative">
+                                        <div class="h-full w-[94%] bg-purple-500 absolute top-0 left-0"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs text-white mb-1"><span>Time-to-Insight
+                                            Reduction</span> <span>60%</span></div>
+                                    <div class="h-1 bg-slate-800 rounded-full overflow-hidden relative">
+                                        <div class="h-full w-[60%] bg-cyan-500 absolute top-0 left-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-panel p-8 rounded-3xl border-l-4 border-l-cyan-500 reveal opacity-80 hover:opacity-100 transition">
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Gerente de Datos</h3>
+                            <p class="text-slate-400 text-sm">Consolidación de Infraestructura (Abr 2024 - Dic 2025)</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-4 max-w-4xl">Fase centrada en la resiliencia arquitectónica.
+                        Implementación de defensa en profundidad para ciberseguridad, Disaster Recovery y alineación
+                        cloud con ventas.</p>
+                    <div class="flex gap-2">
+                        <span class="tech-pill border-cyan-500/30 text-cyan-300">AWS</span>
+                        <span class="tech-pill border-cyan-500/30 text-cyan-300">Data Security</span>
+                        <span class="tech-pill border-cyan-500/30 text-cyan-300">ROI Focus</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTO IV: INNOVATION LAB (FINLY) -->
+    <section id="finly"
+        class="py-32 px-6 bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent relative overflow-hidden">
+        <div class="absolute right-0 top-1/4 w-1/2 h-1/2 bg-cyan-500/10 blur-[150px] rounded-full -z-10"></div>
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-20 reveal">
+                <span class="text-lime-400 font-mono font-bold tracking-widest text-xs uppercase mb-2 block"><i
+                        class="fas fa-flask"></i> Case Study: Economía Agéntica</span>
+                <h2 class="text-5xl md:text-7xl font-orbitron font-bold text-white mb-6">PROYECTO <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-cyan-400">FINLY</span>
+                </h2>
+                <div class="max-w-3xl mx-auto flex flex-col gap-4">
+                    <p class="text-xl text-slate-300">Más que una Fintech personal, es un manifiesto de desarrollo
+                        <strong>"Agent-First"</strong>. Construida orquestando una flota de IAs autónomas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 reveal">
+                <div class="space-y-6">
+                    <div
+                        class="glass-panel p-6 rounded-2xl border-t border-cyan-500/50 hover:bg-cyan-950/20 transition group">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="font-bold text-white text-lg">Vibe Coding & IDE</h4><i
+                                class="fas fa-code text-2xl text-cyan-400 group-hover:rotate-12 transition"></i>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-400">
+                            <li><strong class="text-white">Google Antigravity:</strong> IDE principal para gestión de
+                                múltiples agentes (Gemini 3 Pro).</li>
+                            <li><strong class="text-white">Lovable:</strong> Generación de Frontend React/Vite desde
+                                prompts naturales.</li>
+                            <li><strong class="text-white">Claude Code:</strong> Ingeniería agéntica en terminal.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center relative">
+                    <div
+                        class="w-full h-full absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-lime-500/20 blur-2xl rounded-full opacity-40">
+                    </div>
+                    <div
+                        class="glass-panel rounded-[3rem] border-4 border-slate-800 bg-slate-950/80 relative z-10 w-full max-w-sm text-center shadow-2xl hover:scale-105 transition duration-500 overflow-hidden">
+
+                        <!-- NEW IMAGE WITH TEXT OVERLAY -->
+                        <div class="relative h-64 w-full group cursor-pointer" onclick="openModal('finly-modal')">
+                            <img src="public/images/finly_architecture.png"
+                                class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500">
+                            <div
+                                class="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
+                                <h3 class="text-3xl font-orbitron font-bold text-white mb-2 text-shadow-lg">Fin-ly.me
+                                </h3>
+                                <p class="text-lime-400 text-xs font-mono mb-4">AHORRA DINERO, CUMPLE METAS</p>
+                                <button
+                                    class="bg-black/60 border border-lime-400/50 hover:bg-lime-500 hover:text-black hover:border-lime-500 text-white font-bold py-2 px-6 rounded-full transition backdrop-blur-sm text-xs tracking-wider uppercase">
+                                    <i class="fas fa-network-wired mr-2"></i> Ver Arquitectura
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="p-8 pt-4 space-y-2 text-left bg-slate-950">
+                            <div class="bg-white/5 p-3 rounded-lg border border-white/5 flex gap-3 items-center"><i
+                                    class="fab fa-react text-cyan-400"></i> <span
+                                    class="text-sm font-bold text-white">React 18 + Vite</span></div>
+                            <div class="bg-white/5 p-3 rounded-lg border border-white/5 flex gap-3 items-center"><i
+                                    class="fas fa-database text-purple-400"></i> <span
+                                    class="text-sm font-bold text-white">Supabase (PostgreSQL)</span></div>
+                            <div class="bg-white/5 p-3 rounded-lg border border-white/5 flex gap-3 items-center"><i
+                                    class="fab fa-whatsapp text-green-400"></i> <span
+                                    class="text-sm font-bold text-white">Evolution API</span></div>
+                            <a href="https://fin-ly.me/oferta-premium" target="_blank"
+                                class="mt-6 block w-full py-3 bg-lime-500 hover:bg-lime-400 text-black text-center font-bold rounded-xl transition shadow-[0_0_15px_rgba(132,204,22,0.3)]">Visitar
+                                Proyecto</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6 lg:mt-12">
+                    <div
+                        class="glass-panel p-6 rounded-2xl border-t border-rose-500/50 hover:bg-rose-950/20 transition">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="font-bold text-white text-lg">Orquestación IA</h4><i
+                                class="fas fa-bolt text-2xl text-rose-400"></i>
+                        </div>
+                        <p class="text-sm text-slate-400 mb-4"><strong>n8n</strong> actúa como el cerebro que conecta
+                            Supabase con WhatsApp.</p>
+                        <div class="text-xs font-mono text-slate-500">> Event: Bank Deposits<br>> Trigger: AI
+                            Motivation<br>> Output: WhatsApp Notification</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTO V: LEGADO (TIMELINE) -->
+    <section id="legacy" class="py-32 px-6 border-t border-white/5">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-4xl font-orbitron font-bold text-white mb-12 text-center uppercase">Ingeniería Profunda &
+                Orígenes</h2>
+            <div class="relative border-l-2 border-slate-800 ml-4 md:ml-1/2 space-y-12">
+
+                <div class="relative pl-8 md:pl-0">
+                    <div
+                        class="absolute w-4 h-4 bg-cyan-500 rounded-full -left-[9px] border-4 border-slate-900 shadow-[0_0_10px_#22d3ee]">
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                        <div class="md:text-right md:pr-12 mb-2 md:mb-0">
+                            <h3 class="text-2xl font-bold text-white">Director de Datos</h3>
+                            <div class="text-cyan-400 font-mono text-sm">HDI Seguros | Mar 2023 - Abr 2024</div>
+                        </div>
+                        <div class="glass-panel p-6 rounded-xl border border-white/5">
+                            <p class="text-slate-400 text-sm">Fase fundacional. Construcción de capacidades,
+                                reclutamiento de talento y primeras estrategias de Data-Driven Decision Making.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-0">
+                    <div class="absolute w-4 h-4 bg-lime-500 rounded-full -left-[9px] border-4 border-slate-900"></div>
+                    <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                        <div class="hidden md:block glass-panel p-6 rounded-xl border border-white/5 text-right">
+                            <p class="text-slate-400 text-sm">Ingestión masiva híbrida (On-Premise a GCP). Orquestación
+                                con Cloud Composer (Airflow) y Bash Scripting extremo para Retail.</p>
+                            <div class="mt-2 text-xs text-lime-400 font-mono">GCP | Airflow | Linux</div>
+                        </div>
+                        <div class="md:pl-12">
+                            <h3 class="text-2xl font-bold text-white">Data Engineer</h3>
+                            <div class="text-lime-400 font-mono text-sm">Kibernum (ADRetail) | 2022 - 2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-0">
+                    <div class="absolute w-4 h-4 bg-rose-500 rounded-full -left-[9px] border-4 border-slate-900"></div>
+                    <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                        <div class="md:text-right md:pr-12 mb-2 md:mb-0">
+                            <h3 class="text-2xl font-bold text-white">Data Scientist / Engineer</h3>
+                            <div class="text-rose-400 font-mono text-sm">Globant (Disney & Google) | 2021 - 2022</div>
+                        </div>
+                        <div class="glass-panel p-6 rounded-xl border border-white/5">
+                            <p class="text-slate-400 text-sm"><strong>Disney:</strong> ETLs
+                                Java/Dataflow.<br><strong>Google:</strong> Migraciones Petabytes AWS a GCP.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-0">
+                    <div class="absolute w-4 h-4 bg-white rounded-full -left-[9px] border-4 border-slate-900"></div>
+                    <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                        <div class="hidden md:block glass-panel p-6 rounded-xl border border-white/5 text-right">
+                            <p class="text-slate-400 text-sm">Construcción de Data Marts y modelos predictivos de Churn.
+                                Puente entre BI y Estrategia.</p>
+                        </div>
+                        <div class="md:pl-12">
+                            <h3 class="text-xl font-bold text-slate-200">Director BI</h3>
+                            <div class="text-slate-500 font-mono text-sm">SBS Seguros | 2017 - 2021</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-0 pb-12">
+                    <div class="absolute w-3 h-3 bg-slate-600 rounded-full -left-[7px] border-4 border-slate-900"></div>
+                    <div class="text-center md:col-span-2">
+                        <button onclick="openModal('operations-modal')"
+                            class="inline-block px-6 py-3 rounded-full bg-slate-800 text-slate-400 text-xs font-bold uppercase cursor-pointer hover:bg-slate-700 hover:text-white transition border border-slate-700 shadow-lg">
+                            <i class="fas fa-history mr-2"></i> +6 Años de Fundamentos Operativos (JLT, AIG, Cardif)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTO VI: ARSENAL -->
+    <section id="matrix" class="py-24 px-6 bg-slate-900/30">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-orbitron font-bold text-white mb-12 text-center uppercase">Matriz de Competencias
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass-panel p-6 rounded-2xl reveal relative">
+                    <canvas id="skillsChart"></canvas>
+                    <button onclick="openModal('skills-modal')"
+                        class="absolute top-4 right-4 text-xs text-cyan-400 hover:text-white border border-cyan-500/30 rounded px-2 py-1"><i
+                            class="fas fa-list"></i> Ver Todas</button>
+                </div>
+
+                <div class="space-y-6 reveal">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2"><i
+                                    class="fas fa-graduation-cap text-cyan-400"></i> Academia de Élite</h3>
+                            <button onclick="openModal('courses-modal')"
+                                class="text-xs text-slate-400 hover:text-cyan-400 underline decoration-slate-600 hover:decoration-cyan-400">Ver
+                                Historial Completo</button>
+                        </div>
+
+                        <!-- UPDATED ACADEMIA ORDER -->
+                        <div class="space-y-4">
+                            <div
+                                class="p-3 bg-slate-800/50 border-l-2 border-slate-500 rounded-r-lg group hover:bg-slate-800 transition">
+                                <div class="text-white font-bold text-sm">Ingeniero Industrial</div>
+                                <div class="text-xs text-slate-400">Universidad Católica de Colombia (2010-2015)</div>
+                            </div>
+                            <div
+                                class="p-3 bg-slate-800/50 border-l-2 border-slate-500 rounded-r-lg group hover:bg-slate-800 transition">
+                                <div class="text-white font-bold text-sm">Esp. Inteligencia de Negocios</div>
+                                <div class="text-xs text-slate-400">Universidad Pontificia Bolivariana (2019-2020)</div>
+                            </div>
+                            <div
+                                class="p-3 bg-slate-800/50 border-l-2 border-cyan-500 rounded-r-lg group hover:bg-slate-800 transition">
+                                <div class="text-white font-bold group-hover:text-cyan-400 transition text-sm">DS4A /
+                                    Colombia (Correlation One)</div>
+                                <div class="text-xs text-cyan-400/80">Graduado con Honores (Top 1%)</div>
+                            </div>
+                            <div
+                                class="p-3 bg-slate-800/50 border-l-2 border-purple-500 rounded-r-lg group hover:bg-slate-800 transition">
+                                <div class="text-white font-bold group-hover:text-purple-400 transition text-sm">
+                                    Maestría en TIC</div>
+                                <div class="text-xs text-purple-400/80">Universidad Pontificia Bolivariana (2020-2023)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 bg-deep text-center text-sm">
+        <p class="text-slate-500 font-mono mb-4 tracking-widest">FABIO SALINAS // SYSTEM VERSION 3.5 [AGENTIC]</p>
+        <div class="flex justify-center gap-6 text-2xl text-slate-600">
+            <a href="mailto:fabio.salinas1982@gmail.com"
+                class="hover:text-cyan-400 transition transform hover:scale-110"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/fabiosalinas" target="_blank"
+                class="hover:text-cyan-400 transition transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/fnsalinas" target="_blank"
+                class="hover:text-cyan-400 transition transform hover:scale-110"><i class="fab fa-github"></i></a>
         </div>
     </footer>
 
-    <script>
-        // --- AUDIO ENGINE ---
-        const audio = document.getElementById('profile-audio');
-        const audioBtn = document.getElementById('audio-toggle');
-        const audioStatus = document.getElementById('audio-status');
-        const audioIcon = document.getElementById('audio-icon');
 
+    <!-- ================= MODALS SYSTEM ================= -->
+
+    <!-- PHILOSOPHY MODAL -->
+    <div id="philosophy-modal"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+        onclick="closeModal('philosophy-modal')">
+        <div class="max-w-2xl w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl relative shadow-2xl overflow-y-auto max-h-[80vh]"
+            onclick="event.stopPropagation()">
+            <button onclick="closeModal('philosophy-modal')"
+                class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-white mb-4 italic">"El Manifiesto"</h3>
+            <div class="space-y-4 text-slate-300 font-light leading-relaxed">
+                <p>En el panorama contemporáneo de la tecnología empresarial, donde la convergencia entre la ciencia de
+                    datos tradicional y la inteligencia artificial generativa redefine los modelos operativos, mi
+                    trayectoria emerge como un caso de estudio de evolución estratégica.</p>
+                <p>La filosofía de liderazgo que destilo no se limita a la mera gestión de activos de información; se
+                    fundamenta en la premisa de que los datos son el sistema nervioso central de la organización
+                    moderna. Mi capacidad para alinear la infraestructura técnica compleja con los imperativos de
+                    rentabilidad del negocio es lo que define mi marca personal.</p>
+                <p>En este horizonte de 2025, mi incursión en la <strong>"Economía Agéntica"</strong> a través de
+                    <strong>Finly</strong> demuestra cómo la programación asistida por agentes autónomos puede acelerar
+                    el ciclo de vida del desarrollo de software y democratizar la creación de soluciones financieras
+                    sofisticadas.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPERATIONS HISTORY MODAL -->
+    <div id="operations-modal"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+        onclick="closeModal('operations-modal')">
+        <div class="max-w-3xl w-full bg-slate-900 border border-slate-700 p-8 rounded-2xl relative shadow-2xl overflow-y-auto max-h-[80vh]"
+            onclick="event.stopPropagation()">
+            <button onclick="closeModal('operations-modal')"
+                class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-white mb-6 border-b border-slate-800 pb-4">Fundamentos Operativos &
+                Negocio</h3>
+
+            <div class="space-y-8">
+                <div>
+                    <h4 class="text-xl font-bold text-slate-200">JLT Affinity - Operations Chief <span
+                            class="text-xs bg-slate-800 px-2 py-1 rounded ml-2 text-slate-400">Oct 2015 – May
+                            2017</span></h4>
+                    <p class="text-sm text-slate-400 mt-2">Gestión de rentabilidad (P&L) y expansión internacional.</p>
+                    <ul class="list-disc ml-5 mt-2 text-sm text-slate-300 space-y-1">
+                        <li>Liderazgo del proyecto de garantías extendidas en <strong>Ecuador</strong> con "Créditos
+                            Económicos".</li>
+                        <li>Definición de recursos operativos y parametrización de aplicaciones core.</li>
+                        <li>Establecimiento de KPIs de control financiero y operativo.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold text-slate-200">AIG Seguros - Extended Warranty Analyst <span
+                            class="text-xs bg-slate-800 px-2 py-1 rounded ml-2 text-slate-400">Abr 2013 – Oct
+                            2015</span></h4>
+                    <p class="text-sm text-slate-400 mt-2">Manejo de grandes volúmenes de datos masivos.</p>
+                    <ul class="list-disc ml-5 mt-2 text-sm text-slate-300 space-y-1">
+                        <li>Diseño de reportes de control de fugas de clientes.</li>
+                        <li>Automatización de procesos de bases de datos de ventas y siniestros.</li>
+                        <li>Cimentación de habilidades en ingeniería de datos temprana.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold text-slate-200">Cardif Colombia - Incentives Analyst <span
+                            class="text-xs bg-slate-800 px-2 py-1 rounded ml-2 text-slate-400">Oct 2011 – Abr
+                            2013</span></h4>
+                    <p class="text-sm text-slate-400 mt-2">Lógica de compensación variable y eficiencia.</p>
+                    <ul class="list-disc ml-5 mt-2 text-sm text-slate-300 space-y-1">
+                        <li>Liberación de incentivos acumulados de dos años mediante optimización de procesos (50%
+                            reducción de carga).</li>
+                        <li>Diseño de planes de incentivos estratégicos para fuerza de ventas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COURSES MODAL -->
+    <div id="courses-modal"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+        onclick="closeModal('courses-modal')">
+        <div class="max-w-2xl w-full bg-slate-900 border border-slate-700 p-8 rounded-2xl relative shadow-2xl overflow-y-auto max-h-[85vh]"
+            onclick="event.stopPropagation()">
+            <button onclick="closeModal('courses-modal')"
+                class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-white mb-2">Historial de Certificaciones</h3>
+            <p class="text-sm text-slate-500 mb-6">Aprendizaje continuo y validación técnica.</p>
+
+            <ul class="modal-list text-sm">
+                <!-- Added user provided list -->
+                <li><strong>GCP Data Engineer</strong> <span>Datapath | May 2023 | ID: DATAPATH-CE-043-2023-005</span>
+                </li>
+                <li><strong>Google Cloud Data Engineer</strong> <span>Datapath | Sept 2022</span></li>
+                <li><strong>Comandos de Linux desde cero hasta programar Shell Script</strong> <span>Udemy | Jul 2022 |
+                        ID: UC-fa793d27...</span></li>
+                <li><strong>Orquestación de Datos con Apache Airflow 2.0</strong> <span>Datapath | Abr 2022 | ID:
+                        ODA20500</span></li>
+                <li><strong>Data Analysis Using Pyspark</strong> <span>Coursera | Nov 2021 | ID: Z53DJLR4VAZ9</span>
+                </li>
+                <li><strong>Data Visualization in Python Masterclass</strong> <span>Udemy | Jun 2021</span></li>
+                <li><strong>Fundamentals of Big Data</strong> <span>Databricks | Jun 2021</span></li>
+                <li><strong>Certified Analytics Professional (CAP) Prep</strong> <span>LinkedIn | Nov 2020</span></li>
+                <li><strong>Curso Completo Machine Learning Data Science en Python</strong> <span>Udemy | Nov
+                        2020</span></li>
+                <li><strong>DS4A / Colombia: Graduated with Honors</strong> <span>Correlation One | Dic 2019 | ID:
+                        16269409</span></li>
+                <li><strong>Hadoop Foundations - Level 1</strong> <span>IBM</span></li>
+                <li><strong>Data Science Foundations - Level 1</strong> <span>IBM</span></li>
+                <!-- LinkedIn Batch -->
+                <li><strong>Learning Data Governance</strong> <span>LinkedIn | Feb 2021</span></li>
+                <li><strong>Python para data scientist avanzado</strong> <span>LinkedIn | Nov 2020</span></li>
+                <li><strong>Power BI avanzado</strong> <span>LinkedIn | Nov 2020</span></li>
+                <li><strong>Fundamentos de Big Data (Varios Módulos)</strong> <span>LinkedIn | Nov 2020</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SKILLS MODAL -->
+    <div id="skills-modal"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+        onclick="closeModal('skills-modal')">
+        <div class="max-w-4xl w-full bg-slate-900 border border-slate-700 p-8 rounded-2xl relative shadow-2xl overflow-y-auto max-h-[90vh]"
+            onclick="event.stopPropagation()">
+            <button onclick="closeModal('skills-modal')"
+                class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-white mb-6">Inventario de Capacidades</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- SECTION 1: Strategic & Leadership -->
+                <div>
+                    <h4 class="text-purple-400 font-bold mb-3 border-b border-purple-500/30 pb-1">Estrategia & Liderazgo
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">Liderazgo de Equipos (8+ exp)</span>
+                        <span class="tech-pill">Planificación Estratégica</span>
+                        <span class="tech-pill">Gestión de Proyectos</span>
+                        <span class="tech-pill">Gobierno de Datos</span>
+                        <span class="tech-pill">Comunicación C-Level</span>
+                        <span class="tech-pill">Resolución de Problemas</span>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: AI & Innovation (AI ADDED) -->
+                <div>
+                    <h4 class="text-lime-400 font-bold mb-3 border-b border-lime-500/30 pb-1">IA Agéntica & Futuro</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill bg-lime-500/10 text-lime-200 border-lime-500/30">Vibe Coding</span>
+                        <span class="tech-pill bg-lime-500/10 text-lime-200 border-lime-500/30">Google
+                            Antigravity</span>
+                        <span class="tech-pill bg-lime-500/10 text-lime-200 border-lime-500/30">Orquestación LLM</span>
+                        <span class="tech-pill bg-lime-500/10 text-lime-200 border-lime-500/30">Lovable / Frontend
+                            GenAI</span>
+                        <span class="tech-pill">Machine Learning</span>
+                        <span class="tech-pill">Artificial Intelligence</span>
+                        <span class="tech-pill">Analítica Predictiva</span>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: Data Engineering -->
+                <div>
+                    <h4 class="text-cyan-400 font-bold mb-3 border-b border-cyan-500/30 pb-1">Ingeniería de Datos</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">GCP Data Engineer</span>
+                        <span class="tech-pill">Apache Airflow</span>
+                        <span class="tech-pill">ETL / ELT</span>
+                        <span class="tech-pill">Big Data Processing</span>
+                        <span class="tech-pill">SQL & NoSQL</span>
+                        <span class="tech-pill">Data Warehousing</span>
+                        <span class="tech-pill">Python (Pandas, PySpark)</span>
+                        <span class="tech-pill">Linux / Bash Scripting</span>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: Analytics & Visualization -->
+                <div>
+                    <h4 class="text-rose-400 font-bold mb-3 border-b border-rose-500/30 pb-1">Analítica & BI</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">Power BI Avanzado</span>
+                        <span class="tech-pill">Visualización de Datos</span>
+                        <span class="tech-pill">Business Intelligence</span>
+                        <span class="tech-pill">Análisis de Tendencias</span>
+                        <span class="tech-pill">Análisis de Ventas</span>
+                        <span class="tech-pill">Estadística Aplicada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXISTING MODALS (FINLY, HDI, PROFILE) RETAINED... -->
+    <!-- (Adding them quickly below to ensure file completeness) -->
+
+    <div id="finly-modal"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+        onclick="closeModal('finly-modal')">
+        <div class="bg-slate-900 border border-lime-500/30 rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 relative"
+            onclick="event.stopPropagation()">
+            <button onclick="closeModal('finly-modal')"
+                class="absolute top-4 right-4 z-50 bg-black/50 hover:bg-white/20 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center transition"><i
+                    class="fas fa-times"></i></button>
+            <div class="grid md:grid-cols-2">
+                <div class="bg-black/50 overflow-hidden h-64 md:h-auto"><img src="public/images/finly_architecture.png"
+                        class="w-full h-full object-cover opacity-80"></div>
+                <div class="p-8 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">Arquitectura Agéntica</h3>
+                    <p class="text-slate-300 text-sm mb-4">Orquestación compleja entre n8n y Supabase. El flujo
+                        demuestra cómo los agentes de IA procesan lenguaje natural desde WhatsApp para actualizar bases
+                        de datos transaccionales en tiempo real.</p>
+                    <ul class="text-xs text-slate-400 space-y-2 mb-6">
+                        <li><i class="fas fa-check text-lime-400 mr-2"></i> WhatsApp como Interfaz (Evolution API)</li>
+                        <li><i class="fas fa-check text-lime-400 mr-2"></i> Procesamiento Asíncrono (n8n Workflows)</li>
+                        <li><i class="fas fa-check text-lime-400 mr-2"></i> Seguridad RLS (Supabase Auth)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hdi-modal"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+        onclick="closeModal('hdi-modal')">
+        <div class="bg-slate-900 border border-purple-500/30 rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 relative"
+            onclick="event.stopPropagation()">
+            <button onclick="closeModal('hdi-modal')"
+                class="absolute top-4 right-4 z-50 bg-black/50 hover:bg-white/20 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center transition"><i
+                    class="fas fa-times"></i></button>
+            <div class="grid md:grid-cols-2">
+                <div class="bg-black/50 overflow-hidden h-64 md:h-auto border-r border-white/5">
+                    <img src="public/images/data_lakehouse.png"
+                        class="w-full h-full object-cover opacity-85 hover:scale-105 transition duration-700">
+                </div>
+                <div class="p-8 flex flex-col justify-center bg-slate-900/50">
+                    <h3 class="text-2xl font-bold text-white mb-4">Visión Data Lakehouse</h3>
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">Arquitectura centralizada que unifica la
+                        ingesta agnóstica de fuentes con una capa de almacenamiento robusta (S3/Lake), permitiendo la
+                        democratización real del dato en la organización.</p>
+                    <ul class="text-xs text-slate-400 space-y-3">
+                        <li class="flex items-center"><i class="fas fa-database text-purple-400 w-6"></i>
+                            <span><strong>Single Source of Truth:</strong> Eliminación de silos informativos.</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-shield-alt text-purple-400 w-6"></i>
+                            <span><strong>Gobierno & Compliance:</strong> Seguridad y trazabilidad del dato.</span></li>
+                        <li class="flex items-center"><i class="fas fa-chart-network text-purple-400 w-6"></i>
+                            <span><strong>Analítica Self-Service:</strong> Empoderamiento del usuario final.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile-modal"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+        onclick="closeModal('profile-modal')">
+        <div class="max-w-md w-full text-center" onclick="event.stopPropagation()">
+            <img src="https://avatars.githubusercontent.com/u/39883976"
+                class="w-64 h-64 rounded-full border-4 border-cyan-500 shadow-[0_0_50px_rgba(34,211,238,0.3)] mx-auto mb-6">
+            <h3 class="text-3xl font-orbitron text-white mb-2">Fabio Nelson Salinas</h3>
+            <p class="text-cyan-400 font-mono text-sm mb-6">SYSTEM ID: FNS-82-ADMIN</p>
+            <button onclick="closeModal('profile-modal')"
+                class="px-6 py-2 border border-white/20 rounded-full text-white hover:bg-white/10 transition">Cerrar
+                Identidad</button>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('profile-audio');
+        let isPlaying = false;
         function toggleAudio() {
-            if (audio.paused) {
-                audio.play();
-                audioStatus.innerText = "Reproduciendo briefing de perfil...";
-                audioIcon.innerText = "⏸️";
-                audioBtn.classList.remove('audio-pulse');
-            } else {
-                audio.pause();
-                audioStatus.innerText = "Audio pausado";
-                audioIcon.innerText = "🔊";
-            }
+            const btnIcon = document.querySelector('#audio-btn i');
+            if (isPlaying) { audio.pause(); btnIcon.classList.remove('fa-pause'); btnIcon.classList.add('fa-play'); }
+            else { audio.play(); btnIcon.classList.remove('fa-play'); btnIcon.classList.add('fa-pause'); }
+            isPlaying = !isPlaying;
         }
 
-        audio.onended = () => {
-            audioStatus.innerText = "Escuchar de nuevo";
-            audioIcon.innerText = "🔊";
-            audioBtn.classList.add('audio-pulse');
-        };
-
-        // --- MODAL ENGINE ---
-        const modalData = {
-            'intro': {
-                title: 'Perfil Profesional Maestro',
-                content: `
-                    <div class="space-y-6">
-                        <p>Ingeniero Industrial con Maestría en TIC y Científico de Datos Graduado con Honores (DS4A). Líder híbrido capaz de navegar entre la junta directiva y la arquitectura técnica.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="p-4 bg-slate-900/50 rounded-xl border border-white/5">
-                                <h5 class="text-cyan-400 font-bold mb-2 uppercase text-xs tracking-tighter">Core Expertise</h5>
-                                <p class="text-sm">Estrategia de Datos, Ingeniería Lakehouse (AWS), IA Generativa (Agentes) y Liderazgo Estratégico.</p>
-                            </div>
-                            <div class="p-4 bg-slate-900/50 rounded-xl border border-white/5">
-                                <h5 class="text-purple-400 font-bold mb-2 uppercase text-xs tracking-tighter">Impacto HDI</h5>
-                                <p class="text-sm">Construcción del roadmap definitivo de datos y equipo multidisciplinario de alto desempeño.</p>
-                            </div>
-                        </div>
-                        <p class="italic text-slate-400">Especialista en convertir la complejidad técnica en activos de negocio reales.</p>
-                    </div>
-                `
-            },
-            'kibernum': {
-                title: 'Kibernum / ADRetail - Ingeniería Profunda',
-                content: `
-                    <div class="space-y-4 text-sm">
-                        <div class="border-l-2 border-lime-500 pl-4">
-                            <h5 class="text-white font-bold">Ingestión Híbrida Masiva</h5>
-                            <p class="text-slate-400">Implementación de pipelines para mover datos desde fuentes legacy (Oracle, Netezza) hacia Google Cloud Platform (GCP). Desarrollo de <strong>Shell Scripts en Linux</strong> para automatización segura.</p>
-                        </div>
-                        <div class="border-l-2 border-lime-500 pl-4">
-                            <h5 class="text-white font-bold">Orquestación con Airflow</h5>
-                            <p class="text-slate-400">Configuración avanzada de <strong>Cloud Composer</strong> para gestionar flujos de trabajo ETL complejos y transformaciones de datos críticas.</p>
-                        </div>
-                        <div class="border-l-2 border-lime-500 pl-4">
-                            <h5 class="text-white font-bold">Arquitectura Event-Driven</h5>
-                            <p class="text-slate-400">Integración de <strong>Pub/Sub</strong> para activar Cloud Functions, permitiendo comunicación asíncrona y escalable entre componentes de datos.</p>
-                        </div>
-                    </div>
-                `
-            },
-            'globant': {
-                title: 'Globant - Escala Global (Disney/Google)',
-                content: `
-                    <div class="space-y-4 text-sm">
-                        <div class="border-l-2 border-cyan-500 pl-4">
-                            <h5 class="text-white font-bold">Proyecto Disney: Telemetría Real-Time</h5>
-                            <p class="text-slate-400">Desarrollo de ETLs en <strong>Java</strong> para extraer datos de New Relic cada 15 min, transformándolos para carga en BigQuery.</p>
-                        </div>
-                        <div class="border-l-2 border-cyan-500 pl-4">
-                            <h5 class="text-white font-bold">Proyecto Google: Migraciones Cloud</h5>
-                            <p class="text-slate-400">Uso de <strong>Storage Transfer Service</strong> para mover petabytes entre AWS y GCP. Diseño de DAGs en Airflow integrando operadores complejos.</p>
-                        </div>
-                        <div class="border-l-2 border-cyan-500 pl-4">
-                            <h5 class="text-white font-bold">Procesamiento Serverless</h5>
-                            <p class="text-slate-400">Implementación de scripts en <strong>Python con Apache Beam</strong> ejecutados sobre Dataflow para transformaciones distribuidas.</p>
-                        </div>
-                    </div>
-                `
-            },
-            'finly-stack': {
-                title: 'Fin-ly.me Tech Stack',
-                content: `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-4">
-                            <h5 class="text-cyan-400 font-bold uppercase text-xs">Backend & Automatización</h5>
-                            <p class="text-sm">n8n, Python, SQL, OpenRouter API.</p>
-                        </div>
-                        <div class="space-y-4">
-                            <h5 class="text-purple-400 font-bold uppercase text-xs">Cloud & Data</h5>
-                            <p class="text-sm">Supabase (PostgreSQL, Edge Functions), GitHub CI/CD.</p>
-                        </div>
-                        <div class="space-y-4">
-                            <h5 class="text-lime-400 font-bold uppercase text-xs">IA & Frontend</h5>
-                            <p class="text-sm">Gemini CLI, Cursor, Lovable (Vite), Agentes RAG (Finly Coach).</p>
-                        </div>
-                        <div class="space-y-4">
-                            <h5 class="text-orange-400 font-bold uppercase text-xs">Multimedia</h5>
-                            <p class="text-sm">Heygen, ElevenLabs, Meta Ads API.</p>
-                        </div>
-                    </div>
-                `
-            },
-            'education': {
-                title: 'Excelencia Académica',
-                content: `
-                    <div class="space-y-6">
-                        <div class="border-l-4 border-cyan-500 pl-4 py-1">
-                            <h5 class="text-white font-bold uppercase text-sm">DS4A / Colombia</h5>
-                            <p class="text-cyan-400 text-sm font-bold">Graduado con Honores - Data Science (Correlation One / MINTIC)</p>
-                        </div>
-                        <div class="border-l-4 border-purple-500 pl-4 py-1">
-                            <h5 class="text-white font-bold uppercase text-sm">Magíster en TIC</h5>
-                            <p class="text-purple-400 text-sm">Universidad Pontificia Bolivariana</p>
-                        </div>
-                        <div class="border-l-4 border-lime-500 pl-4 py-1">
-                            <h5 class="text-white font-bold uppercase text-sm">Ingeniería Industrial</h5>
-                            <p class="text-lime-400 text-sm">Universidad Católica de Colombia</p>
-                        </div>
-                    </div>
-                `
-            }
-        };
-
-        function openModal(key) {
-            const data = modalData[key];
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-content').innerHTML = data.content;
-            document.getElementById('modal-container').classList.add('active');
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('open');
+            setTimeout(() => { modal.firstElementChild.classList.remove('scale-95'); modal.firstElementChild.classList.add('scale-100'); }, 10);
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('modal-container').classList.remove('active');
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => { modal.classList.remove('open'); }, 300);
             document.body.style.overflow = 'auto';
         }
 
-        // --- CHART HELPERS ---
-        function processLabel(label) {
-            if (label.length <= 16) return label;
-            const words = label.split(' ');
-            let lines = [];
-            let currentLine = "";
-            words.forEach(w => {
-                if ((currentLine + w).length > 16) {
-                    lines.push(currentLine.trim());
-                    currentLine = w + " ";
-                } else {
-                    currentLine += w + " ";
-                }
-            });
-            lines.push(currentLine.trim());
-            return lines;
-        }
+        window.onload = function () {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(34, 211, 238, 0.4)');
+            gradient.addColorStop(1, 'rgba(168, 85, 247, 0.1)');
 
-        const tooltipConfig = {
-            callbacks: {
-                title: (items) => {
-                    const chartData = items[0].chart.data;
-                    const lbl = chartData.labels[items[0].dataIndex];
-                    return Array.isArray(lbl) ? lbl.join(' ') : lbl;
-                }
-            }
-        };
-
-        window.onload = function() {
-            // Team Chart
-            new Chart(document.getElementById('teamChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Ingeniería de Datos', 'Gobierno de Datos', 'BI & Reporting', 'Analítica / IA'].map(processLabel),
-                    datasets: [{
-                        data: [30, 20, 25, 25],
-                        backgroundColor: ['#22d3ee', '#818cf8', '#a855f7', '#4ade80'],
-                        borderColor: '#020617',
-                        borderWidth: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { 
-                        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 10 } } },
-                        tooltip: tooltipConfig
-                    }
-                }
-            });
-
-            // Radar Chart
-            new Chart(document.getElementById('radarChart'), {
+            new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Liderazgo Estratégico', 'Arquitectura Datos', 'IA Generativa', 'Growth Marketing', 'Full-Stack Dev', 'Gobernanza'].map(processLabel),
+                    labels: ['Estrategia de Datos', 'IA Agéntica', 'Cloud Architecture', 'Liderazgo', 'Frontend Generativo', 'Data Science'],
                     datasets: [{
-                        label: 'Dominio Profesional (%)',
-                        data: [98, 95, 95, 80, 92, 97],
-                        fill: true,
-                        backgroundColor: 'rgba(34, 211, 238, 0.2)',
+                        label: 'Nivel',
+                        data: [98, 95, 92, 96, 85, 90],
+                        backgroundColor: gradient,
                         borderColor: '#22d3ee',
-                        pointBackgroundColor: '#22d3ee',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#a855f7'
+                        pointBackgroundColor: '#a855f7',
+                        pointBorderColor: '#fff',
+                        borderWidth: 2
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
                     scales: {
                         r: {
                             angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
                             grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                            pointLabels: { color: '#94a3b8', font: { size: 12, family: 'Plus Jakarta Sans' } },
-                            ticks: { display: false },
-                            suggestedMin: 50,
-                            suggestedMax: 100
+                            pointLabels: { color: '#cbd5e1', font: { family: 'Plus Jakarta Sans', size: 10, weight: '600' } },
+                            ticks: { display: false, backdropColor: 'transparent' },
+                            suggestedMin: 50, suggestedMax: 100
                         }
                     },
-                    plugins: { tooltip: tooltipConfig }
+                    plugins: { legend: { display: false } }
                 }
             });
 
@@ -608,4 +928,5 @@
         };
     </script>
 </body>
+
 </html>
