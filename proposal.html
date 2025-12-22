@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infraestructura de Libertad & Crecimiento Patrimonial | Propuesta Estratégica</title>
+    <title>Propuesta Estratégica | Infraestructura de Libertad</title>
 
     <!-- EXTERNAL RESOURCES -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -62,7 +62,7 @@
         }
 
         .glass-panel {
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(12px);
@@ -95,8 +95,25 @@
             text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
         }
 
-        .tech-pill {
-            @apply px-3 py-1 text-xs font-mono rounded-full border border-white/10 bg-white/5 text-slate-300;
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .modal.open {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        /* Modal Content Animation */
+        .modal-content {
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal.open .modal-content {
+            transform: scale(1);
         }
     </style>
 </head>
@@ -109,311 +126,464 @@
             class="glass-panel rounded-full px-6 py-3 flex justify-between items-center shadow-2xl shadow-cyan-900/20 bg-slate-900/80 backdrop-blur-md">
             <a href="index.html"
                 class="font-orbitron font-bold text-slate-400 hover:text-cyan-400 text-sm tracking-widest cursor-pointer transition flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> VOLVER AL PORTFOLIO
+                <i class="fas fa-arrow-left"></i> VOLVER
             </a>
             <span
-                class="text-xs font-bold uppercase tracking-wider text-cyan-400 border border-cyan-500/30 px-2 py-1 rounded">Confidencial</span>
+                class="text-xs font-bold uppercase tracking-wider text-cyan-400 border border-cyan-500/30 px-2 py-1 rounded">ESTRATEGIA
+                2025</span>
         </div>
     </nav>
 
     <!-- BACKGROUND FX -->
     <div class="fixed inset-0 z-[-1] bg-deep bg-[size:40px_40px] bg-cyber-grid opacity-20"></div>
     <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px]"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[120px]"></div>
 
-    <!-- HEADER -->
-    <section class="min-h-[80vh] flex flex-col justify-center items-center px-6 pt-20 relative text-center">
+    <!-- HERO SECTION -->
+    <section class="min-h-[90vh] flex flex-col justify-center items-center px-6 pt-20 relative text-center">
         <div class="max-w-4xl mx-auto">
             <div
-                class="inline-block px-4 py-1 rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-400 text-xs font-mono mb-6">
-                PROPUESTA ESTRATÉGICA 2025
+                class="inline-block px-4 py-1 rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-400 text-xs font-mono mb-6 animate-pulse">
+                <i class="fas fa-terminal mr-2"></i>ESTADO: LISTO PARA DESPLIEGUE
             </div>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-orbitron font-black leading-tight mb-8">
-                INFRAESTRUCTURA DE <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-purple-400 text-glow">LIBERTAD</span>
-                & CRECIMIENTO PATRIMONIAL
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-orbitron font-black leading-tight mb-8 text-white">
+                HOLA <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-glow">INDIRA</span>,<br>
+                ESTA ES SU INFRAESTRUCTURA DE LIBERTAD.
             </h1>
-            <p class="text-xl md:text-2xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
-                Blindando su negocio, recuperando su tiempo y construyendo un legado autónomo.
+            <p class="text-xl md:text-2xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed mb-8">
+                Diseñada para "Copreneurs": Proteger su Tiempo, Blindar su Patrimonio y Escalar su Impacto sin
+                sacrificar noches ni fines de semana.
             </p>
-            <div class="mt-12 flex justify-center gap-4">
-                <a href="#investment"
-                    class="px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full transition shadow-lg shadow-cyan-500/20">
-                    Ver Inversión
-                </a>
-                <a href="#roadmap"
-                    class="px-8 py-4 glass-panel hover:bg-white/5 text-slate-300 font-bold rounded-full transition">
-                    Hoja de Ruta
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- EXECUTIVE SUMMARY -->
-    <section class="py-20 px-6">
-        <div class="container mx-auto max-w-4xl">
-            <div class="glass-panel p-8 md:p-12 rounded-3xl neon-border">
-                <h2 class="text-3xl font-orbitron font-bold text-white mb-6 flex items-center gap-3">
-                    <i class="fas fa-shield-alt text-purple-400"></i> EL DILEMA DEL "COPRENEUR"
-                </h2>
-                <div class="space-y-6 text-lg text-slate-300 leading-relaxed font-light">
-                    <p>
-                        Para una empresa familiar en el mercado High-Ticket, el éxito no se mide solo en facturación,
-                        sino en <strong>Calidad de Vida</strong> y <strong>Seguridad Patrimonial</strong>.
-                    </p>
-                    <p>
-                        Actualmente, enfrentan una elección imposible: crecer sacrificando tiempo personal, o estancarse
-                        para mantener la paz mental. Esta propuesta construye un <strong>Activo Digital Propio</strong>
-                        que trabaja 24/7.
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-6 mt-8">
-                        <div class="bg-slate-900/50 p-6 rounded-xl border-l-4 border-cyan-500">
-                            <h4 class="font-bold text-white mb-2">Para el Visionario (Impacto)</h4>
-                            <p class="text-sm text-slate-400">Clones digitales que multiplican su mensaje sin
-                                esclavizarlos a la cámara. Escala infinita.</p>
-                        </div>
-                        <div class="bg-slate-900/50 p-6 rounded-xl border-l-4 border-purple-500">
-                            <h4 class="font-bold text-white mb-2">Para el Integrador (Seguridad)</h4>
-                            <p class="text-sm text-slate-400">Sistemas "inbaneables", cumplimiento legal y retorno
-                                financiero medible.</p>
-                        </div>
-                    </div>
-                    <div class="mt-8 p-4 bg-lime-500/10 border border-lime-500/20 rounded-lg text-center">
-                        <p class="text-lime-300 font-bold text-sm md:text-base">
-                            <i class="fas fa-clock mr-2"></i> PROMESA: Recuperar +20 horas semanales de gestión
-                            operativa.
-                        </p>
-                    </div>
+            <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-12">
+                <div class="glass-panel p-4 rounded-xl text-left border-l-2 border-cyan-500">
+                    <p class="text-xs text-cyan-400 font-bold uppercase mb-1">Para el Visionario</p>
+                    <p class="text-sm text-white">Impacto masivo sin esclavitud operativa. Su mensaje se multiplica.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl text-left border-l-2 border-purple-500">
+                    <p class="text-xs text-purple-400 font-bold uppercase mb-1">Para el Integrador</p>
+                    <p class="text-sm text-white">Seguridad, control total, ROI medible y cumplimiento legal.</p>
                 </div>
             </div>
+
+            <div class="flex justify-center gap-4">
+                <a href="#pillars"
+                    class="px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:bg-cyan-400 transition shadow-lg shadow-white/20">
+                    Ver La Solución
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- STRATEGY PILLARS -->
-    <section class="py-20 px-6">
+    <!-- PILLARS SECTION -->
+    <section id="pillars" class="py-24 px-6 relative">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-3xl font-orbitron font-bold text-white mb-12 text-center uppercase">La Tríada de Crecimiento
-            </h2>
+            <h2 class="text-3xl font-orbitron font-bold text-white mb-16 text-center">LA TRÍADA "COPRENEUR"</h2>
+
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- PILAR 1 -->
-                <div class="glass-panel p-8 rounded-2xl hover:translate-y-[-5px] transition duration-300">
+                <div class="glass-panel p-8 rounded-3xl relative group hover:bg-slate-800/50 transition">
                     <div
-                        class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 text-3xl text-cyan-400 shadow-lg shadow-cyan-900/20">
-                        <i class="fas fa-dungeon"></i>
+                        class="absolute -top-6 left-8 bg-slate-900 border border-cyan-500 p-3 rounded-xl text-2xl text-cyan-400 shadow-lg shadow-cyan-900/50">
+                        🏰
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Cuartel General</h3>
-                    <p class="text-xs font-mono text-cyan-400 mb-4 uppercase tracking-widest">Tierra Propia</p>
-                    <ul class="space-y-3 text-sm text-slate-400">
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-cyan-500 mt-1"></i>
-                            <span><strong>Web App de Conversión:</strong> Centro de control dinámico, no
-                                estático.</span></li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-cyan-500 mt-1"></i>
-                            <span><strong>Compliance Anti-Ban:</strong> Migración a WhatsApp Cloud API oficial.</span>
-                        </li>
-                    </ul>
+                    <h3 class="text-xl font-bold text-white mt-6 mb-2">Cuartel General</h3>
+                    <p class="text-xs font-mono text-cyan-400 mb-4 tracking-widest">TIERRA PROPIA</p>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Dejar de construir en terreno alquilado (Instagram/TikTok). Centralizamos sus activos en una Web
+                        App propia y blindamos su comunicación.
+                    </p>
+                    <button onclick="openModal('modal-pilar1')"
+                        class="text-cyan-400 text-sm font-bold hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-search-plus"></i> Ver Detalle Técnico
+                    </button>
                 </div>
 
                 <!-- PILAR 2 -->
                 <div
-                    class="glass-panel p-8 rounded-2xl hover:translate-y-[-5px] transition duration-300 border border-purple-500/30">
+                    class="glass-panel p-8 rounded-3xl relative group hover:bg-slate-800/50 transition border border-purple-500/20">
                     <div
-                        class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 text-3xl text-purple-400 shadow-lg shadow-purple-900/20">
-                        <i class="fas fa-fingerprint"></i>
+                        class="absolute -top-6 left-8 bg-slate-900 border border-purple-500 p-3 rounded-xl text-2xl text-purple-400 shadow-lg shadow-purple-900/50">
+                        🎭
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Clones Éticos</h3>
-                    <p class="text-xs font-mono text-purple-400 mb-4 uppercase tracking-widest">Avatares IA</p>
-                    <ul class="space-y-3 text-sm text-slate-400">
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1"></i>
-                            <span><strong>Amplificación:</strong> Uds controlan el guion. Escala sin grabación
-                                constante.</span></li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1"></i>
-                            <span><strong>Personalización WOW:</strong> Saludos por nombre a cada lead
-                                automáticamente.</span></li>
-                    </ul>
+                    <h3 class="text-xl font-bold text-white mt-6 mb-2">Clones Éticos</h3>
+                    <p class="text-xs font-mono text-purple-400 mb-4 tracking-widest">AMPLIFICACIÓN DE AUTORIDAD</p>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Usamos IA para que el "Visionario" esté en todas partes, saludando a cada lead por nombre, sin
+                        tener que grabar un solo segundo extra.
+                    </p>
+                    <button onclick="openModal('modal-pilar2')"
+                        class="text-purple-400 text-sm font-bold hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-search-plus"></i> Ver Magia Detrás
+                    </button>
                 </div>
 
                 <!-- PILAR 3 -->
-                <div class="glass-panel p-8 rounded-2xl hover:translate-y-[-5px] transition duration-300">
+                <div class="glass-panel p-8 rounded-3xl relative group hover:bg-slate-800/50 transition">
                     <div
-                        class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 text-3xl text-rose-400 shadow-lg shadow-rose-900/20">
-                        <i class="fas fa-robot"></i>
+                        class="absolute -top-6 left-8 bg-slate-900 border border-rose-500 p-3 rounded-xl text-2xl text-rose-400 shadow-lg shadow-rose-900/50">
+                        🤖
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Ventas IA</h3>
-                    <p class="text-xs font-mono text-rose-400 mb-4 uppercase tracking-widest">Conversacional</p>
-                    <ul class="space-y-3 text-sm text-slate-400">
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-rose-500 mt-1"></i>
-                            <span><strong>Setter 24/7:</strong> Califica y agenda mientras duermen.</span></li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-rose-500 mt-1"></i>
-                            <span><strong>Blindaje Meta 2026:</strong> Roles compliant para evitar baneos
-                                futuros.</span></li>
-                    </ul>
+                    <h3 class="text-xl font-bold text-white mt-6 mb-2">Fuerza de Ventas</h3>
+                    <p class="text-xs font-mono text-rose-400 mb-4 tracking-widest">VENTAS 24/7</p>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Un agente comercial entrenado con su metodología exacta. Califica, nutre y agenda citas mientras
+                        ustedes disfrutan el fin de semana.
+                    </p>
+                    <button onclick="openModal('modal-pilar3')"
+                        class="text-rose-400 text-sm font-bold hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-search-plus"></i> Ver Lógica Anti-Ban
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRICING -->
-    <section id="investment" class="py-20 px-6 bg-slate-900/30">
-        <div class="container mx-auto max-w-7xl">
-            <h2 class="text-3xl font-orbitron font-bold text-white mb-4 text-center">MODELO DE INVERSIÓN</h2>
-            <p class="text-center text-slate-400 mb-12 max-w-2xl mx-auto text-sm">Transparencia Total: Ustedes poseen
-                los Datos, nosotros licenciamos la Lógica "Black Box". Costos de API (Pass-Through) directos a su
-                tarjeta.</p>
+    <!-- LEGAL SHIELD (NEW SECTION) -->
+    <section class="py-12 px-6 bg-slate-900/50 border-y border-white/5">
+        <div class="container mx-auto max-w-4xl">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/3 text-center md:text-right">
+                    <div class="text-6xl mb-2">🛡️</div>
+                    <h3 class="text-xl font-bold text-white">Escudo Legal & IP</h3>
+                    <p class="text-xs text-slate-500">SEGURIDAD PARA 2026+</p>
+                </div>
+                <div class="w-full md:w-2/3 border-l-2 border-slate-700 pl-8">
+                    <p class="text-slate-300 text-sm mb-4">
+                        Entendemos que la seguridad legal es vital para el "Integrador". Nuestra arquitectura es una
+                        <strong>"Caja Negra"</strong> licenciada.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-400 mb-4">
+                        <li class="flex gap-2"><i class="fas fa-check text-lime-500"></i> DATOS: Ustedes son dueños del
+                            100% de la lista de clientes.</li>
+                        <li class="flex gap-2"><i class="fas fa-check text-lime-500"></i> META 2026: Cumplimiento
+                            anticipado de normativas de IA.</li>
+                    </ul>
+                    <button onclick="openModal('modal-legal')"
+                        class="text-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm transition">
+                        Leer Estrategia "Black Box"
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="grid lg:grid-cols-3 gap-8 items-start">
+    <!-- PRICING & DELIVERABLES -->
+    <section class="py-24 px-6">
+        <div class="container mx-auto max-w-7xl">
+            <h2 class="text-3xl font-orbitron font-bold text-white mb-2 text-center uppercase">Inversión & Entregables
+            </h2>
+            <p class="text-center text-slate-500 mb-12">Transparencia Total: Modelo "Pass-Through". Los costos de API se
+                pagan directo al proveedor.</p>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-end">
 
                 <!-- OPTION A -->
-                <div class="glass-panel p-8 rounded-3xl opacity-80 hover:opacity-100 transition">
-                    <h3 class="text-xl font-bold text-slate-300 mb-2">OPCIÓN A</h3>
-                    <div class="text-2xl font-orbitron font-bold text-white mb-4">CIMIENTOS</div>
-                    <div class="text-3xl font-bold text-cyan-400 mb-2">$4.8M <span
-                            class="text-sm font-normal text-slate-500">COP</span></div>
-                    <div class="text-xs text-slate-500 mb-8 font-mono">Setup Único</div>
-
-                    <ul class="space-y-4 text-sm text-slate-300 mb-8 border-t border-white/5 pt-6">
-                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> Auditoría de Compliance</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> Automatización Básica LinkedIn
-                        </li>
-                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> Setup Avatares (Imagen)</li>
-                        <li class="flex gap-3 text-slate-600"><i class="fas fa-times"></i> Web App Propia</li>
-                        <li class="flex gap-3 text-slate-600"><i class="fas fa-times"></i> Chatbot Venta Avanzada</li>
-                    </ul>
-                    <div class="text-xs text-center text-slate-500">Operativo: ~$120k COP/mes</div>
+                <div class="glass-panel p-8 rounded-3xl opacity-70 hover:opacity-100 transition">
+                    <h3 class="text-lg font-bold text-slate-400">OPCIÓN A: "CIMIENTOS"</h3>
+                    <div class="text-3xl font-bold text-white my-4">$4.8M <span
+                            class="text-base font-normal text-slate-500">COP</span></div>
+                    <p class="text-xs text-slate-400 mb-6 min-h-[40px]">Para dejar de operar manualmente y
+                        profesionalizar la base.</p>
+                    <button onclick="openModal('modal-entregables-a')"
+                        class="w-full py-3 border border-white/20 rounded-xl text-slate-300 hover:bg-white/5 transition mb-4 text-sm">
+                        Ver Lista de Entregables
+                    </button>
                 </div>
 
-                <!-- OPTION B (RECOMMENDED) -->
+                <!-- OPTION B (HERO) -->
                 <div
-                    class="glass-panel p-8 rounded-3xl border-2 border-purple-500 relative transform md:-translate-y-4 shadow-2xl shadow-purple-900/20 bg-slate-900">
+                    class="glass-panel p-8 rounded-3xl border-2 border-purple-500 bg-slate-900 relative shadow-2xl shadow-purple-900/30 transform scale-105 z-10">
                     <div
-                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-500 text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest shadow-lg">
+                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-500 text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest">
                         RECOMENDADO</div>
+                    <h3 class="text-lg font-bold text-purple-300">OPCIÓN B: "GROWTH"</h3>
+                    <div class="text-4xl font-bold text-white my-4">$9.2M <span
+                            class="text-base font-normal text-slate-500">COP</span></div>
+                    <p class="text-xs text-slate-400 mb-6 min-h-[40px]">Equilibrio perfecto. Control total de la base de
+                        datos y automatización de ventas escrita.</p>
 
-                    <h3 class="text-xl font-bold text-purple-300 mb-2">OPCIÓN B</h3>
-                    <div class="text-2xl font-orbitron font-bold text-white mb-4">GROWTH PARTNER</div>
-                    <div class="text-4xl font-bold text-purple-400 mb-2">$9.2M <span
-                            class="text-sm font-normal text-slate-500">COP</span></div>
-                    <div class="text-xs text-slate-400 mb-8 font-mono">Facilidad: 50% / 50%</div>
-
-                    <ul class="space-y-4 text-sm text-white mb-8 border-t border-white/10 pt-6">
-                        <li class="flex gap-3"><i class="fas fa-check-circle text-purple-500"></i> <strong>Todo en
-                                Opción A</strong></li>
-                        <li class="flex gap-3"><i class="fas fa-check-circle text-purple-500"></i> Web App & CRM Propio
-                            (Dueños de Leads)</li>
-                        <li class="flex gap-3"><i class="fas fa-check-circle text-purple-500"></i> Ecosistema WhatsApp
-                            Cloud + Chatbot</li>
-                        <li class="flex gap-3"><i class="fas fa-check-circle text-purple-500"></i> Nutrición Automática
-                            (Email)</li>
-                        <li class="flex gap-3"><i class="fas fa-shield-alt text-purple-500"></i> Garantía Soporte 30
-                            Días</li>
-                    </ul>
-                    <div class="text-xs text-center text-slate-500 mb-6">Operativo: ~$240k COP/mes</div>
-                    <a href="mailto:fabio.salinas1982@gmail.com?subject=Opción B - Growth Partner"
-                        class="block w-full py-4 bg-purple-600 hover:bg-purple-500 text-white font-bold text-center rounded-xl transition shadow-lg shadow-purple-500/25">
-                        Seleccionar Growth
-                    </a>
+                    <button onclick="openModal('modal-entregables-b')"
+                        class="w-full py-3 bg-purple-600 hover:bg-purple-500 rounded-xl text-white font-bold transition mb-4 shadow-lg shadow-purple-500/25">
+                        Ver Entregables (Checklist)
+                    </button>
+                    <div class="text-center text-xs text-slate-500 mt-4">Facilidades: 50% Inicio / 50% Entrega</div>
                 </div>
 
                 <!-- OPTION C -->
-                <div class="glass-panel p-8 rounded-3xl opacity-80 hover:opacity-100 transition">
-                    <h3 class="text-xl font-bold text-slate-300 mb-2">OPCIÓN C</h3>
-                    <div class="text-2xl font-orbitron font-bold text-white mb-4">LEGACY EMPIRE</div>
-                    <div class="text-3xl font-bold text-rose-400 mb-2">$19.5M <span
-                            class="text-sm font-normal text-slate-500">COP</span></div>
-                    <div class="text-xs text-slate-500 mb-8 font-mono">Facilidad: 3 Pagos</div>
-
-                    <ul class="space-y-4 text-sm text-slate-300 mb-8 border-t border-white/5 pt-6">
-                        <li class="flex gap-3"><i class="fas fa-check text-rose-500"></i> <strong>Todo en Opción
-                                B</strong></li>
-                        <li class="flex gap-3"><i class="fas fa-check text-rose-500"></i> Agente de Voz Neuronal
-                            (Llamadas)</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-rose-500"></i> Video Personalizado Masivo
-                        </li>
-                        <li class="flex gap-3"><i class="fas fa-check text-rose-500"></i> Dashboard Ejecutivo ROI</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-rose-500"></i> Gestión Ads "Black Box"</li>
-                    </ul>
-                    <div class="text-xs text-center text-slate-500">Operativo: ~$500k+ COP/mes</div>
+                <div class="glass-panel p-8 rounded-3xl opacity-70 hover:opacity-100 transition">
+                    <h3 class="text-lg font-bold text-slate-400">OPCIÓN C: "LEGACY"</h3>
+                    <div class="text-3xl font-bold text-white my-4">$19.5M <span
+                            class="text-base font-normal text-slate-500">COP</span></div>
+                    <p class="text-xs text-slate-400 mb-6 min-h-[40px]">Dominio total. Voz neuronal y personalización de
+                        video masiva.</p>
+                    <button onclick="openModal('modal-entregables-c')"
+                        class="w-full py-3 border border-white/20 rounded-xl text-slate-300 hover:bg-white/5 transition mb-4 text-sm">
+                        Ver Lista de Entregables
+                    </button>
                 </div>
+
             </div>
 
-            <!-- ROI BLOCK -->
-            <div
-                class="mt-16 bg-gradient-to-r from-slate-900 to-slate-800 p-8 rounded-2xl border border-white/10 text-center">
-                <h3 class="text-2xl font-orbitron text-white mb-6">MATEMÁTICA DEL ROI (OPCIÓN B)</h3>
-                <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-                    <div>
-                        <div class="text-4xl font-bold text-lime-400 mb-1">3</div>
-                        <div class="text-xs text-slate-400 uppercase tracking-wider">Clientes Totales<br>para recuperar
-                            100%</div>
-                    </div>
-                    <div class="hidden md:block text-2xl text-slate-600">+</div>
-                    <div>
-                        <div class="text-4xl font-bold text-lime-400 mb-1">500%</div>
-                        <div class="text-xs text-slate-400 uppercase tracking-wider">ROI Financiero<br>Año 1 (1
-                            cliente/mes)</div>
-                    </div>
-                    <div class="hidden md:block text-2xl text-slate-600">+</div>
-                    <div>
-                        <div class="text-4xl font-bold text-cyan-400 mb-1">1,000h</div>
-                        <div class="text-xs text-slate-400 uppercase tracking-wider">ROI de Vida<br>Horas Liberadas
-                        </div>
-                    </div>
-                </div>
+            <!-- ROI CALCULATOR CTA -->
+            <div class="mt-16 text-center">
+                <button onclick="openModal('modal-roi')"
+                    class="inline-flex items-center gap-3 px-8 py-4 bg-slate-800 border border-lime-500/50 rounded-full text-lime-400 hover:bg-slate-700 transition">
+                    <i class="fas fa-calculator"></i>
+                    <span class="font-bold">Ver Matemática del ROI (¿Cómo se paga solo?)</span>
+                </button>
             </div>
         </div>
     </section>
 
     <!-- ROADMAP -->
-    <section id="roadmap" class="py-20 px-6">
+    <section class="py-20 px-6 bg-deep">
         <div class="container mx-auto max-w-4xl">
-            <h2 class="text-3xl font-orbitron font-bold text-white mb-12 text-center uppercase">Hoja de Ruta de
-                Implementación</h2>
-            <div class="border-l-2 border-slate-800 ml-4 space-y-12">
-
-                <!-- Week 1 -->
-                <div class="relative pl-8">
-                    <div class="absolute w-4 h-4 bg-slate-600 rounded-full -left-[9px] border-4 border-slate-900"></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Semana 1: Cimientos y Legalidad</h3>
-                    <p class="text-slate-400 text-sm">Auditoría completa, Setup de WhatsApp API oficial y definición de
-                        la "Voz de Marca" para congruencia.</p>
+            <h2 class="text-2xl font-orbitron font-bold text-white mb-12 text-center">ROADMAP: 4 SEMANAS PARA LA
+                LIBERTAD</h2>
+            <div class="space-y-8 relative border-l border-slate-800 ml-6">
+                <!-- STEP 1 -->
+                <div class="pl-8 relative">
+                    <div class="absolute w-4 h-4 bg-slate-700 rounded-full -left-[8.5px] border-4 border-deep"></div>
+                    <h4 class="text-white font-bold">Semana 1: Cimientos y Auditoría</h4>
+                    <p class="text-sm text-slate-500">Revisamos cuentas, evitamos bloqueos y configuramos WhatsApp Cloud
+                        API oficial.</p>
                 </div>
-
-                <!-- Week 2 -->
-                <div class="relative pl-8">
-                    <div class="absolute w-4 h-4 bg-cyan-600 rounded-full -left-[9px] border-4 border-slate-900"></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Semana 2: Clonación</h3>
-                    <p class="text-slate-400 text-sm">Ingesta de metodología en la IA y pruebas piloto de Avatares.</p>
+                <!-- STEP 2 -->
+                <div class="pl-8 relative">
+                    <div class="absolute w-4 h-4 bg-cyan-700 rounded-full -left-[8.5px] border-4 border-deep"></div>
+                    <h4 class="text-white font-bold">Semana 2: Entrenamiento del Clon</h4>
+                    <p class="text-sm text-slate-500">Ingesta de su metodología. Creamos la "voz" digital para que suene
+                        como ustedes.</p>
                 </div>
-
-                <!-- Week 3 -->
-                <div class="relative pl-8">
-                    <div class="absolute w-4 h-4 bg-purple-600 rounded-full -left-[9px] border-4 border-slate-900">
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Semana 3: Integración Técnica</h3>
-                    <p class="text-slate-400 text-sm">Conexión de tuberías digitales: CRM <-> Web <-> WhatsApp.</p>
+                <!-- STEP 3 -->
+                <div class="pl-8 relative">
+                    <div class="absolute w-4 h-4 bg-purple-700 rounded-full -left-[8.5px] border-4 border-deep"></div>
+                    <h4 class="text-white font-bold">Semana 3: Integración Técnica</h4>
+                    <p class="text-sm text-slate-500">Conectamos CRM, Web y WhatsApp. Pruebas de flujo de datos.</p>
                 </div>
-
-                <!-- Week 4 -->
-                <div class="relative pl-8">
+                <!-- STEP 4 -->
+                <div class="pl-8 relative">
                     <div
-                        class="absolute w-4 h-4 bg-lime-500 rounded-full -left-[9px] border-4 border-slate-900 shadow-[0_0_10px_#84cc16]">
+                        class="absolute w-4 h-4 bg-lime-500 rounded-full -left-[8.5px] border-4 border-deep shadow-[0_0_10px_#84cc16]">
                     </div>
-                    <h3 class="text-xl font-bold text-lime-400 mb-2">Semana 4: Soft Launch 🚀</h3>
-                    <p class="text-slate-400 text-sm">Lanzamiento controlado con tráfico real y monitoreo humano
-                        intensivo.</p>
+                    <h4 class="text-lime-400 font-bold">Semana 4: Lanzamiento Controlado 🚀</h4>
+                    <p class="text-sm text-slate-400">Abrimos la llave del tráfico. Monitoreo humano intensivo por 30
+                        días (Garantía).</p>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-12 border-t border-white/5 bg-deep text-center text-sm">
-        <p class="text-slate-500 font-mono mb-4">CONFIDENCIAL // SOLO PARA LECTURA AUTORIZADA</p>
-        <a href="index.html"
-            class="text-cyan-400 hover:text-white transition text-xs font-bold uppercase tracking-widest">
-            Fabio Salinas &copy; 2025
-        </a>
+    <footer class="py-12 border-t border-white/5 bg-deep text-center text-sm px-6">
+        <p class="text-slate-500 font-mono mb-4">CONFIDENCIAL // PREPARADO PARA INDIRA & SOCIO</p>
+        <div class="flex flex-col gap-4 justify-center items-center">
+            <a href="mailto:fabio.salinas1982@gmail.com" class="text-cyan-400 hover:text-white transition font-bold">
+                <i class="fas fa-envelope mr-2"></i> Agendar Sesión de Ajuste
+            </a>
+            <span class="text-xs text-slate-700">Fabio Salinas © 2025</span>
+        </div>
     </footer>
+
+    <!-- ================= MODALS SYSTEM ================= -->
+
+    <!-- MODAL OVERLAY BACKDROP -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-40 hidden transition-opacity opacity-0"
+        onclick="closeAllModals()"></div>
+
+    <!-- MODAL 1: PILAR TÉCNICO -->
+    <div id="modal-pilar1" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+            class="modal-content glass-panel bg-slate-900 border border-cyan-500/30 max-w-2xl w-full rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-cyan-400 mb-4">🏰 Detalle: Cuartel General</h3>
+            <div class="space-y-4 text-slate-300">
+                <p>A diferencia de una web tradicional estática (que es solo un folleto), creamos una <strong>Aplicación
+                        Web Dinámica</strong>.</p>
+                <ul class="list-disc pl-5 space-y-2 text-sm">
+                    <li><strong>Hosting Propio:</strong> No dependen de "Linktree" ni plataformas que pueden cambiar
+                        reglas.</li>
+                    <li><strong>WhatsApp Cloud API:</strong> Es la versión empresarial "Enterprise" de WhatsApp. Permite
+                        automatización masiva legal sin riesgo de que bloqueen su número personal.</li>
+                    <li><strong>Pixel & Tracking:</strong> Instalación profesional para saber exactamente cuánto cuesta
+                        adquirir un cliente.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: PILAR CLONES -->
+    <div id="modal-pilar2" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+            class="modal-content glass-panel bg-slate-900 border border-purple-500/30 max-w-2xl w-full rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-purple-400 mb-4">🎭 Detalle: Clones Digitales</h3>
+            <div class="space-y-4 text-slate-300">
+                <p>Utilizamos tecnologías como <strong>HeyGen o Synthesia</strong> para crear avatares fotorrealistas de
+                    ustedes.</p>
+                <div class="bg-black/30 p-4 rounded-lg border border-purple-500/20">
+                    <h4 class="font-bold text-white mb-2 text-sm">¿Cómo funciona el video personalizado?</h4>
+                    <p class="text-xs text-slate-400">Cuando un lead se registra, nuestro sistema toma su nombre
+                        ("Juan") y genera en tiempo real un video donde su Avatar dice: <em>"Hola Juan, bienvenido, he
+                            preparado esto para ti..."</em>. Esto aumenta la conversión dramáticamente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: PILAR VENTAS -->
+    <div id="modal-pilar3" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+            class="modal-content glass-panel bg-slate-900 border border-rose-500/30 max-w-2xl w-full rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-rose-400 mb-4">🤖 Detalle: Fuerza de Ventas</h3>
+            <div class="space-y-4 text-slate-300">
+                <p>No es un "Chatbot" de opciones numéricas. Es un <strong>Agente LLM</strong> (Large Language Model)
+                    entrenado con sus guiones de venta exitosos.</p>
+                <ul class="list-disc pl-5 space-y-2 text-sm">
+                    <li><strong>Objetivo:</strong> Calificar. El agente pregunta presupuesto, urgencia y dolores. Si
+                        califica, ofrece agenda. Si no, nutre con contenido.</li>
+                    <li><strong>Anti-Ban:</strong> El agente está programado para tener "tiempos de espera humano" y no
+                        spamear, cumpliendo las normas de Meta.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LEGAL -->
+    <div id="modal-legal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+            class="modal-content glass-panel bg-slate-900 border border-slate-500/30 max-w-3xl w-full rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-white mb-4">🛡️ Estrategia Legal & IP "Black Box"</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-bold text-lime-400 mb-2">LO QUE USTEDES POSEEN (100%)</h4>
+                    <ul class="text-sm text-slate-300 space-y-2">
+                        <li>✅ La Base de Datos de Clientes (CRM).</li>
+                        <li>✅ Los activos de marca (Videos, Logos).</li>
+                        <li>✅ Las cuentas publicitarias y de WhatsApp.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-purple-400 mb-2">LO QUE LICENCIA LA AGENCIA</h4>
+                    <ul class="text-sm text-slate-300 space-y-2">
+                        <li>🔒 La Lógica de Automatización (Prompts, Escenarios).</li>
+                        <li>🔒 El "Know-How" de la configuración técnica.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 p-4 bg-slate-800 rounded-xl border border-white/10">
+                <h4 class="font-bold text-white text-sm mb-2">Blindaje Meta 2026</h4>
+                <p class="text-xs text-slate-400">Meta prohibirá IAs que se hagan pasar por humanos sin etiqueta.
+                    Nuestra arquitectura incluye auto-identificación como "Asistente Digital" y etiquetas de IA visible,
+                    protegiendo sus cuentas de bloqueos futuros.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ENTREGABLES B (Growth) -->
+    <div id="modal-entregables-b" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+            class="modal-content glass-panel bg-slate-900 border border-purple-500 max-w-2xl w-full rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto shadow-2xl shadow-purple-900/50">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-white mb-2">📦 Entregables: Growth Partner</h3>
+            <p class="text-sm text-purple-400 font-bold mb-6">OPCIÓN RECOMENDADA</p>
+
+            <div class="space-y-6">
+                <div>
+                    <h5 class="font-bold text-white border-b border-white/10 pb-2 mb-2">1. Infraestructura</h5>
+                    <ul class="text-sm text-slate-300 space-y-1">
+                        <li>• Setup de WhatsApp Cloud API (Línea Oficial).</li>
+                        <li>• Configuración de CRM Básico (Base de Datos).</li>
+                        <li>• Web App de Aterrizaje (Landing Page Dinámica).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white border-b border-white/10 pb-2 mb-2">2. Inteligencia Artificial</h5>
+                    <ul class="text-sm text-slate-300 space-y-1">
+                        <li>• Chatbot de Ventas (Entrenado para perfilar).</li>
+                        <li>• Flujo de Email Marketing (Nutrición Automática).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white border-b border-white/10 pb-2 mb-2">3. Garantía</h5>
+                    <ul class="text-sm text-slate-300 space-y-1">
+                        <li>• 30 Días de Soporte Prioritario Post-Lanzamiento.</li>
+                        <li>• Ajustes de tono en el agente según resultados reales.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ROI -->
+    <div id="modal-roi" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+            class="modal-content glass-panel bg-slate-900 border border-lime-500/50 max-w-2xl w-full rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <h3 class="text-2xl font-orbitron text-lime-400 mb-6">💰 Matemática del Retorno</h3>
+
+            <div class="grid gap-6">
+                <div class="bg-slate-800 p-4 rounded-xl">
+                    <p class="text-sm text-slate-400 mb-1">Inversión Total (Opción B)</p>
+                    <p class="text-2xl font-bold text-white">$9.200.000 COP</p>
+                </div>
+                <div class="bg-slate-800 p-4 rounded-xl">
+                    <p class="text-sm text-slate-400 mb-1">Valor Promedio de su Cliente (High Ticket)</p>
+                    <p class="text-2xl font-bold text-white">~$4.200.000 COP</p>
+                </div>
+
+                <div class="text-center py-4 border-t border-b border-white/10">
+                    <p class="text-lg text-white font-bold">Clientes necesarios para recuperar inversión:</p>
+                    <div class="text-5xl font-black text-lime-400 my-2">2.2</div>
+                    <p class="text-xs text-slate-500">(Redondeamos a 3 para ser conservadores)</p>
+                </div>
+
+                <div class="bg-lime-900/20 p-4 rounded-xl text-center border border-lime-500/20">
+                    <p class="text-sm text-white font-bold mb-2">Proyección Anual (1 cliente extra/mes)</p>
+                    <p class="text-3xl font-black text-lime-400">+$50.400.000 COP</p>
+                    <p class="text-xs text-lime-200/70 mt-1">Ingreso adicional generado por el sistema 24/7</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT FOR MODALS -->
+    <script>
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            const backdrop = document.getElementById('modal-backdrop');
+
+            if (modal && backdrop) {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+
+                modal.classList.remove('hidden'); // Ensure logic handles 'hidden' if used
+                modal.classList.add('open');
+            }
+        }
+
+        function closeAllModals() {
+            const backdrop = document.getElementById('modal-backdrop');
+            const modals = document.querySelectorAll('.modal');
+
+            backdrop.classList.add('opacity-0');
+            setTimeout(() => backdrop.classList.add('hidden'), 300);
+
+            modals.forEach(modal => {
+                modal.classList.remove('open');
+                // Optional: settimeout to add hidden class if needed for performance
+            });
+        }
+    </script>
 
 </body>
 
