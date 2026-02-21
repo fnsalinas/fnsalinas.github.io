@@ -8,12 +8,12 @@ Se recomienda generarlos en proporción 9:16 (Vertical) para que encajen perfect
 ### B-ROLL 1: El Dolor Operativo
 **Momento en el guion:** "Estás atrapado en la operación diaria. Respondes los mismos mensajes..."
 **Prompt Video (Copiar y Pegar):**
-> Cinematic mid-shot, vertical video. A stressed businessman in his 30s sitting at a modern desk late at night, illuminated only by the glow of his laptop screen. He looks overwhelmed, rubbing his temples. The screen reflects on his glasses showing endless rows of a spreadsheet. High quality, realistic styling, floating dust particles, low key lighting, dramatic corporate atmosphere, 4k resolution.
+> Vertical video, cinematic shot. A businessman working late at night in a dark modern office, brightly illuminated by a laptop screen. He looks very tired and frustrated, staring at the screen. Professional corporate setting, highly detailed, photorealistic, 4k resolution.
 
 **Prompts Imágenes Estáticas (Generación de Keyframes):**
-> **🖼️ Frame Inicial:** Portrait 9:16. A stressed businessman in his 30s sitting still at a modern desk late at night, staring blankly at a glowing laptop screen. His glasses reflect endless rows of a spreadsheet. Low key lighting, floating dust particles, corporate atmosphere, highly detailed photography, hyper-realistic, 8k.
+> **🖼️ Frame Inicial:** Portrait 9:16. A tired businessman sitting at a modern desk late at night, staring blankly at a bright glowing laptop screen. Dark office with cinematic lighting, corporate atmosphere, highly detailed photography, hyper-realistic, 8k.
 >
-> **🖼️ Frame Final:** Portrait 9:16. Close-up of a highly stressed businessman in his 30s late at night, eyes closed tightly, actively rubbing his temples with his hands in deep frustration. The glowing laptop screen strongly illuminates his face from below. Dark modern office background in soft bokeh, cinematic lighting, photorealistic, 8k.
+> **🖼️ Frame Final:** Portrait 9:16. Close-up of a frustrated businessman late at night, looking down with a heavy sigh. The bright laptop screen illuminates his tired face. Dark modern office background in soft bokeh, photorealistic, 8k.
 
 --
 
