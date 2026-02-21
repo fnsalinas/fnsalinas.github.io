@@ -7,22 +7,37 @@ Se recomienda generarlos en proporción 9:16 (Vertical) para que encajen perfect
 
 ### B-ROLL 1: El Dolor Operativo
 **Momento en el guion:** "Estás atrapado en la operación diaria. Respondes los mismos mensajes..."
-**Prompt (Copiar y Pegar):**
+**Prompt Video (Copiar y Pegar):**
 > Cinematic mid-shot, vertical video. A stressed businessman in his 30s sitting at a modern desk late at night, illuminated only by the glow of his laptop screen. He looks overwhelmed, rubbing his temples. The screen reflects on his glasses showing endless rows of a spreadsheet. High quality, realistic styling, floating dust particles, low key lighting, dramatic corporate atmosphere, 4k resolution.
+
+**Prompts Imágenes Estáticas (Generación de Keyframes):**
+> **🖼️ Frame Inicial:** Portrait 9:16. A stressed businessman in his 30s sitting still at a modern desk late at night, staring blankly at a glowing laptop screen. His glasses reflect endless rows of a spreadsheet. Low key lighting, floating dust particles, corporate atmosphere, highly detailed photography, hyper-realistic, 8k.
+>
+> **🖼️ Frame Final:** Portrait 9:16. Close-up of a highly stressed businessman in his 30s late at night, eyes closed tightly, actively rubbing his temples with his hands in deep frustration. The glowing laptop screen strongly illuminates his face from below. Dark modern office background in soft bokeh, cinematic lighting, photorealistic, 8k.
 
 --
 
 ### B-ROLL 2: La Infraestructura (El Valor B2B)
 **Momento en el guion:** "Construyo ecosistemas completos: Agentes IA que perfilan a tus clientes, conectan tu CRM..."
-**Prompt (Copiar y Pegar):**
+**Prompt Video (Copiar y Pegar):**
 > Cinematic macro shot, vertical video. Glowing digital data streams and autonomous AI nodes connecting to form a network structure over a transparent smartphone interface. High-tech, futuristic but professional aesthetic. Cyan and purple neon lights glowing softly in a dark modern office environment. Shallow depth of field, 8k resolution, highly detailed, fluid motion.
+
+**Prompts Imágenes Estáticas (Generación de Keyframes):**
+> **🖼️ Frame Inicial:** Portrait 9:16, macro photography. A sleek transparent smartphone interface held in a dark modern office. Faint cyan and purple neon lights reflect in the shallow depth of field background. A few glowing digital data dots are just starting to appear on the clear screen. Futuristic professional aesthetic, highly detailed, 8k.
+>
+> **🖼️ Frame Final:** Portrait 9:16, macro photography. A complex, fully formed glowing digital network of connected autonomous AI nodes and radiant data streams hovering vividly over a transparent smartphone interface. Brilliant cyan and purple lights pulsating. Dark modern office background in extreme bokeh, hyper-realistic, highly detailed, 8k.
 
 --
 
 ### B-ROLL 3: El Resultado (El Cierre / Calendly)
 **Momento en el guion:** "...tu equipo humano solo entre a la llamada cuando la venta ya está lista para cerrarse."
-**Prompt (Copiar y Pegar):**
+**Prompt Video (Copiar y Pegar):**
 > Cinematic over-the-shoulder shot, vertical video. A professional shaking hands with a client across a sleek modern glass table in a bright corporate office during daytime. Both are smiling confidently. Professional success, closing a B2B deal concept. Natural sunlight coming from a large window, 4k resolution, photorealistic, premium business aesthetic.
+
+**Prompts Imágenes Estáticas (Generación de Keyframes):**
+> **🖼️ Frame Inicial:** Portrait 9:16, over-the-shoulder shot. Two professionals reaching out their arms, hands about to meet across a sleek modern glass table in a bright corporate office. Natural sunlight streaming from a large window. High-end business attire, premium corporate aesthetic, photorealistic, cinematic lighting, 8k.
+>
+> **🖼️ Frame Final:** Portrait 9:16, over-the-shoulder shot. A firm, successful, and enthusiastic professional handshake between two executives across a modern glass table in a bright corporate office. Both individuals are smiling confidently, celebrating a closed B2B deal. Beautiful natural daytime light from a large window, highly detailed, photorealistic, 8k.
 
 ---
 ### 💡 Recomendación para Canva:
