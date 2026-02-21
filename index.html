@@ -173,6 +173,8 @@
                 <a href="#matrix" class="hover:text-white transition">Skills</a>
                 <a href="proposal.html"
                     class="hover:text-cyan-400 transition text-cyan-500/80 border-l border-white/10 pl-6">Propuesta</a>
+                <button onclick="openModal('modal-calendly')"
+                    class="hover:text-lime-400 transition text-lime-500/80 border-l border-white/10 pl-6">Agendar</button>
             </div>
             <button onclick="toggleAudio()" id="audio-btn"
                 class="flex items-center gap-2 text-xs font-bold text-purple-400 hover:text-purple-300 transition uppercase border border-purple-500/30 rounded-full px-3 py-1">
@@ -653,6 +655,23 @@
 
 
     <!-- ================= MODALS SYSTEM ================= -->
+
+    <!-- CALENDLY MODAL -->
+    <div id="modal-calendly"
+        class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+        onclick="closeModal('modal-calendly')">
+        <div class="max-w-4xl w-full bg-slate-900 border border-slate-800 p-2 rounded-2xl relative shadow-2xl overflow-y-auto max-h-[90vh]"
+            onclick="event.stopPropagation()">
+            <button onclick="closeModal('modal-calendly')"
+                class="absolute top-4 right-4 text-slate-500 hover:text-white z-10 bg-slate-900 rounded-full w-8 h-8 flex items-center justify-center"><i
+                    class="fas fa-times fa-lg"></i></button>
+            <div class="p-2">
+                <iframe
+                    src="https://calendly.com/fabio-salinas1982/15min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f172a&text_color=e2e8f0&primary_color=22d3ee"
+                    style="width: 100%; min-width: 320px; height: 700px;" frameborder="0" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- PHILOSOPHY MODAL -->
     <div id="philosophy-modal"
@@ -1181,10 +1200,15 @@
                     const encodedMsg = encodeURIComponent(`Hola Fabio, soy dueño de un negocio y hablé con tu IA. Pierdo horas en esto: "${userData.dolor}". Actualmente uso: "${userData.herramienta}". Necesito automatizar esto.`);
                     const waUrl = `https://wa.me/573212200410?text=${encodedMsg}`;
 
-                    response = `Perfecto. Imagina conectar esa herramienta usando n8n para que ese proceso se haga solo en segundos. ⚡<br><br>He preparado un resumen de tu caso. <strong>Envíamelo al WhatsApp y te responderé con una nota de voz explicándote cómo lo automatizaríamos.</strong><br><br>
-                    <a href="${waUrl}" target="_blank" class="inline-block mt-3 w-full text-center bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-2 px-4 rounded-lg transition-all transform hover:scale-105 shadow-md">
-                        <i class="fab fa-whatsapp text-lg mr-1"></i> ENVIAR DIAGNÓSTICO A FABIO
-                    </a>`;
+                    response = `Perfecto. Imagina conectar esa herramienta usando n8n para que ese proceso se haga solo en segundos. ⚡<br><br><strong>Puedes agendar una sesión estratégica directamente o enviarme tu caso por WhatsApp:</strong><br><br>
+                    <div class="flex flex-col gap-2 mt-3">
+                        <button onclick="document.getElementById('ai-chat-window').classList.add('hidden'); openModal('modal-calendly');" class="w-full text-center bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-2 px-4 rounded-lg transition-all transform hover:scale-105 shadow-md">
+                            <i class="fas fa-calendar-check text-lg mr-1"></i> AGENDAR SESIÓN (MEET)
+                        </button>
+                        <a href="${waUrl}" target="_blank" class="w-full text-center border border-green-500/50 text-green-400 hover:bg-green-500/10 font-bold py-2 px-4 rounded-lg transition-all">
+                            <i class="fab fa-whatsapp text-lg mr-1"></i> Enviar por WhatsApp
+                        </a>
+                    </div>`;
                     isHtmlResponse = true;
                     chatStep++;
 
