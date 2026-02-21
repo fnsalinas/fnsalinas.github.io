@@ -391,70 +391,78 @@
             </div>
 
             <!-- ROI Casos de Uso -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 reveal">
-                <!-- Caso 1 -->
-                <div
-                    class="glass-panel p-6 rounded-2xl border-t border-rose-500/50 hover:bg-rose-950/20 transition group">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <span class="text-xs font-mono text-rose-400 tracking-wider">CASO DE USO 01</span>
-                            <h4 class="font-bold text-white text-lg mt-1">Atención 24/7 Autónoma</h4>
-                        </div>
-                        <i class="fab fa-whatsapp text-2xl text-rose-400 group-hover:scale-110 transition"></i>
-                    </div>
-                    <div class="space-y-3 text-sm">
-                        <p class="text-slate-400 border-b border-white/5 pb-3"><strong>Dolor:</strong> Pérdida de leads
-                            por respuesta tardía o fuera de horario comercial.</p>
-                        <p class="text-slate-300"><strong>Solución:</strong> Agente LLM en WhatsApp conectado al
-                            catálogo/inventario base con derivación humana inteligente.</p>
-                        <div class="flex items-center gap-2 pt-2">
-                            <span class="text-lime-400 font-bold"><i class="fas fa-arrow-down"></i> -60%</span>
-                            <span class="text-xs text-slate-500">Tiempo de respuesta</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- STORYTELLING: EL RESCATE DEL EMPRENDEDOR -->
+            <div class="mb-20 reveal relative">
+                <!-- Decorative Elements -->
+                <div class="absolute -top-10 -left-10 w-32 h-32 bg-lime-500/10 rounded-full blur-3xl"></div>
 
-                <!-- Caso 2 -->
                 <div
-                    class="glass-panel p-6 rounded-2xl border-t border-cyan-500/50 hover:bg-cyan-950/20 transition group">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <span class="text-xs font-mono text-cyan-400 tracking-wider">CASO DE USO 02</span>
-                            <h4 class="font-bold text-white text-lg mt-1">Extracción Data No Estructurada</h4>
-                        </div>
-                        <i
-                            class="fas fa-file-invoice-dollar text-2xl text-cyan-400 group-hover:scale-110 transition"></i>
+                    class="glass-panel p-8 md:p-12 rounded-[2rem] border border-cyan-500/20 relative overflow-hidden bg-slate-900/60 shadow-2xl">
+                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                        <i class="fas fa-quote-right text-8xl text-cyan-400"></i>
                     </div>
-                    <div class="space-y-3 text-sm">
-                        <p class="text-slate-400 border-b border-white/5 pb-3"><strong>Dolor:</strong> Conciliación o
-                            registro manual leyendo cientos de PDFs, e-mails o tickets.</p>
-                        <p class="text-slate-300"><strong>Solución:</strong> Pipeline n8n > Vision AI Extract >
-                            PostgreSQL/Google Sheets, ejecutado al recibir un mail.</p>
-                        <div class="flex items-center gap-2 pt-2">
-                            <span class="text-lime-400 font-bold"><i class="fas fa-arrow-up"></i> 100%</span>
-                            <span class="text-xs text-slate-500">Precisión en digitalización</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Caso 3 -->
-                <div
-                    class="glass-panel p-6 rounded-2xl border-t border-purple-500/50 hover:bg-purple-950/20 transition group">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <span class="text-xs font-mono text-purple-400 tracking-wider">CASO DE USO 03</span>
-                            <h4 class="font-bold text-white text-lg mt-1">Flujo CRM & Marketing AI</h4>
+                    <div class="grid md:grid-cols-5 gap-10 items-center">
+                        <div class="md:col-span-3 space-y-6">
+                            <div
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-mono mb-2">
+                                <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> PROBLEMA REAL
+                            </div>
+                            <h3 class="text-3xl lg:text-4xl font-orbitron font-bold text-white leading-tight">
+                                "Pasaba 4 horas al día respondiendo mensajes y pasando datos a un Excel. Perdía clientes
+                                por no responder a tiempo."
+                            </h3>
+                            <p class="text-slate-400 text-lg leading-relaxed">
+                                Este es el cuello de botella del 80% de los emprendedores. Trabajas <strong>en</strong>
+                                el negocio, apagando incendios operativos, en lugar de trabajar <strong>para
+                                    escalar</strong> tu negocio. La carga manual agota tu energía y te hace perder
+                                dinero por ineficiencia.
+                            </p>
+
+                            <div class="pt-4 border-t border-white/10 mt-6">
+                                <h4 class="text-lime-400 font-bold mb-4 uppercase tracking-widest text-sm"><i
+                                        class="fas fa-bolt mr-2"></i> La Intervención Agéntica</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3">
+                                        <div class="mt-1 bg-cyan-500/20 p-1.5 rounded-md"><i
+                                                class="fas fa-robot text-cyan-400 text-sm"></i></div>
+                                        <p class="text-slate-300"><strong>Agentes en WhatsApp 24/7:</strong> Un LLM
+                                            entrenado con tu conocimiento responde dudas, tarifa y cierra citas mientras
+                                            duermes.</p>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div class="mt-1 bg-cyan-500/20 p-1.5 rounded-md"><i
+                                                class="fas fa-project-diagram text-cyan-400 text-sm"></i></div>
+                                        <p class="text-slate-300"><strong>Flujos n8n Invisibles:</strong> Los datos de
+                                            WhatsApp viajan solos a tu CRM o Excel sin copiar y pegar un solo campo.</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <i class="fas fa-bullseye text-2xl text-purple-400 group-hover:scale-110 transition"></i>
-                    </div>
-                    <div class="space-y-3 text-sm">
-                        <p class="text-slate-400 border-b border-white/5 pb-3"><strong>Dolor:</strong> Seguimiento
-                            manual a clientes inactivos o campañas publicitarias desconectadas de ventas.</p>
-                        <p class="text-slate-300"><strong>Solución:</strong> Análisis del data lake por IA para activar
-                            Webhooks (Notificaciones/Emails hiper-personalizados).</p>
-                        <div class="flex items-center gap-2 pt-2">
-                            <span class="text-lime-400 font-bold"><i class="fas fa-chart-line"></i> +35%</span>
-                            <span class="text-xs text-slate-500">Recuperación de Cartera</span>
+
+                        <div class="md:col-span-2 flex flex-col justify-center">
+                            <div
+                                class="bg-gradient-to-br from-slate-800 to-slate-950 p-6 rounded-2xl border border-white/5 text-center shadow-[0_0_30px_rgba(34,211,238,0.1)] relative group">
+                                <div
+                                    class="absolute -inset-1 bg-gradient-to-r from-lime-400 to-cyan-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200">
+                                </div>
+                                <div class="relative">
+                                    <div
+                                        class="w-16 h-16 mx-auto bg-slate-900 border border-cyan-500/30 rounded-full flex items-center justify-center mb-4">
+                                        <i class="fab fa-whatsapp text-3xl text-green-400"></i>
+                                    </div>
+                                    <h4 class="text-xl font-bold text-white mb-2">¿Te suena familiar?</h4>
+                                    <p class="text-slate-400 text-sm mb-8">Cuéntame tu cuello de botella por WhatsApp.
+                                        Te enviaré un diagnóstico rápido sobre cómo una IA puede salvarte horas a la
+                                        semana.</p>
+
+                                    <a href="https://wa.me/573212200410?text=Hola%20Fabio.%20Estuve%20viendo%20tu%20portfolio%20y%20tengo%20un%20cuello%20de%20botella%20operativo%20en%20mi%20negocio.%20Necesito%20ayuda%20para%20automatizarlo."
+                                        target="_blank"
+                                        class="block w-full py-4 bg-lime-500 hover:bg-lime-400 text-black text-center font-bold font-orbitron rounded-xl transition shadow-[0_0_20px_rgba(132,204,22,0.4)] transform hover:scale-[1.02] active:scale-95">
+                                        VAMOS A ESCALAR
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1032,15 +1040,16 @@
                 <div class="text-xs text-center text-slate-500 font-mono my-2 border-t border-b border-white/5 py-1">
                     Inicialización de Agente Completada</div>
 
-                <!-- Mensaje AI -->
+                <!-- Mensaje AI Inicial -->
                 <div class="flex gap-2">
                     <div class="w-6 h-6 rounded-full bg-cyan-900 flex items-center justify-center flex-shrink-0 mt-1">
                         <i class="fas fa-robot text-cyan-400 text-[10px]"></i>
                     </div>
                     <div
                         class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-sm text-sm border border-white/5">
-                        <p>Hola, soy el clon digital de Fabio. Estoy entrenado con todo su conocimiento sobre
-                            Arquitectura de Datos, n8n y Sistemas Agénticos. ¿En qué puedo ayudarte a escalar hoy?</p>
+                        <p>Hola, soy el clon digital de Fabio. Identifico cuellos de botella en PYMES e independientes
+                            para automatizarlos con IA. 🚀<br><br><strong>¿A qué se dedica tu negocio y en qué proceso
+                                repetitivo pierdes más horas?</strong></p>
                     </div>
                 </div>
             </div>
@@ -1048,14 +1057,14 @@
             <!-- Input Area -->
             <div class="p-3 bg-slate-950 border-t border-white/10">
                 <div class="flex flex-col gap-2">
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="sendAgentMessage('¿Cómo puedes automatizar mi PyME?')"
-                            class="text-[10px] text-left bg-slate-800 hover:bg-slate-700 text-cyan-200 p-2 rounded border border-cyan-500/20 transition truncate">⚙️
-                            Automatizar PYME</button>
-                        <button onclick="sendAgentMessage('Agendemos una demo')"
-                            class="text-[10px] text-left bg-slate-800 hover:bg-slate-700 text-lime-200 p-2 rounded border border-lime-500/20 transition truncate">📅
-                            Agendar Demo</button>
-                    </div>
+                    <button
+                        onclick="sendAgentMessage('Tengo una PYME y pierdo horas respondiendo WhatsApp de clientes')"
+                        class="text-[10px] text-left bg-slate-800 hover:bg-slate-700 text-cyan-200 p-2 rounded border border-cyan-500/20 transition truncate whitespace-normal">Pierdo
+                        tiempo en WhatsApp</button>
+                    <button
+                        onclick="sendAgentMessage('Paso horas copiando datos de facturas y PDFs a Excel manualmente')"
+                        class="text-[10px] text-left bg-slate-800 hover:bg-slate-700 text-lime-200 p-2 rounded border border-lime-500/20 transition truncate whitespace-normal">Copio
+                        datos manualmente a Excel</button>
                     <form onsubmit="handleAgentSubmit(event)" class="relative mt-2">
                         <input type="text" id="agent-input" placeholder="Pregúntame algo..."
                             class="w-full bg-slate-900 border border-slate-700 text-white text-sm rounded-full py-2 pl-4 pr-10 focus:outline-none focus:border-cyan-500 transition placeholder-slate-500"
@@ -1080,35 +1089,41 @@
 
     <!-- Agent Widget Logic -->
     <script>
+        let chatStep = 0;
+        let userData = {
+            dolor: '',
+            herramienta: ''
+        };
+
         function toggleAgentChat() {
             const chat = document.getElementById('ai-chat-window');
             chat.classList.toggle('hidden');
         }
 
-        function appendMessage(text, isUser = false) {
+        function appendMessage(text, isUser = false, isHtml = false) {
             const container = document.getElementById('chat-messages');
             const msgDiv = document.createElement('div');
             msgDiv.className = isUser ? "flex gap-2 justify-end" : "flex gap-2";
 
-            let content = '';
+            let contentStr = isHtml ? text : `<p>${text}</p>`;
+
             if (isUser) {
-                content = `
+                msgDiv.innerHTML = `
                     <div class="bg-cyan-600 text-white p-3 rounded-2xl rounded-tr-sm text-sm shadow-md max-w-[85%]">
-                        <p>${text}</p>
+                        ${contentStr}
                     </div>
                 `;
             } else {
-                content = `
+                msgDiv.innerHTML = `
                     <div class="w-6 h-6 rounded-full bg-cyan-900 flex items-center justify-center flex-shrink-0 mt-1">
                         <i class="fas fa-robot text-cyan-400 text-[10px]"></i>
                     </div>
                     <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-sm text-sm border border-white/5 max-w-[85%]">
-                        <p>${text}</p>
+                        ${contentStr}
                     </div>
                 `;
             }
 
-            msgDiv.innerHTML = content;
             container.appendChild(msgDiv);
             container.scrollTop = container.scrollHeight;
         }
@@ -1127,40 +1142,62 @@
             // Add user message
             appendMessage(text, true);
 
+            // Hide initial suggestions if they are clicked or typed past
+            const suggestionsGrid = document.querySelector('.grid.grid-cols-2.gap-2');
+            if (suggestionsGrid) suggestionsGrid.style.display = 'none';
+
             // Simular "Escribiendo..."
+            const container = document.getElementById('chat-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = "typing-indicator";
+            typingDiv.className = "flex gap-2";
+            typingDiv.innerHTML = `
+                <div class="w-6 h-6 rounded-full bg-cyan-900 flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-robot text-cyan-400 text-[10px]"></i>
+                </div>
+                <div class="bg-slate-800 text-slate-400 p-3 rounded-2xl rounded-tl-sm text-sm border border-white/5 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                </div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            // Flujo conversacional
             setTimeout(() => {
-                const container = document.getElementById('chat-messages');
-                const typingDiv = document.createElement('div');
-                typingDiv.id = "typing-indicator";
-                typingDiv.className = "flex gap-2";
-                typingDiv.innerHTML = `
-                    <div class="w-6 h-6 rounded-full bg-cyan-900 flex items-center justify-center flex-shrink-0 mt-1">
-                        <i class="fas fa-robot text-cyan-400 text-[10px]"></i>
-                    </div>
-                    <div class="bg-slate-800 text-slate-400 p-3 rounded-2xl rounded-tl-sm text-sm border border-white/5 flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
-                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
-                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
-                    </div>
-                `;
-                container.appendChild(typingDiv);
-                container.scrollTop = container.scrollHeight;
+                document.getElementById('typing-indicator').remove();
 
-                // Simular respuesta basada en keywords cortas
-                setTimeout(() => {
-                    document.getElementById('typing-indicator').remove();
-                    let response = "Interesante. Como esto es un clon simulado para el portfolio, te invito a conectar conmigo en LinkedIn o escribirme directo a mr.fabiosalinas@gmail.com para hablar sobre Agentic AI. 🚀";
+                let response = "";
+                let isHtmlResponse = false;
 
-                    if (text.toLowerCase().includes("automatizar") || text.toLowerCase().includes("pyme")) {
-                        response = "Normalmente empiezo mapeando el flujo crítico de tu negocio. Implementando agentes de extracción de datos (n8n + IA) he logrado reducir un 60% el trabajo manual en PYMES. ¿Nos conectamos por LinkedIn para revisar tu caso?";
-                    } else if (text.toLowerCase().includes("demo") || text.toLowerCase().includes("agendar")) {
-                        response = "¡Excelente iniciativa! Puedes agendar una videollamada de 15 min conmigo accediendo directamente a mi Calendly o escribiéndome a mr.fabiosalinas@gmail.com.";
-                    }
+                if (chatStep === 0) {
+                    userData.dolor = text;
+                    response = "Entiendo perfectamente el dolor. Esa ineficiencia cuesta dinero todos los meses. 📉<br><br><strong>¿Qué software usas actualmente para intentar gestionar eso? (ej. Excel, WhatsApp Business, Shopify, HubSpot)</strong>";
+                    isHtmlResponse = true;
+                    chatStep++;
+                } else if (chatStep === 1) {
+                    userData.herramienta = text;
+                    const encodedMsg = encodeURIComponent(`Hola Fabio, soy dueño de un negocio y hablé con tu IA. Pierdo horas en esto: "${userData.dolor}". Actualmente uso: "${userData.herramienta}". Necesito automatizar esto.`);
+                    const waUrl = `https://wa.me/573212200410?text=${encodedMsg}`;
 
-                    appendMessage(response, false);
-                }, 1500);
+                    response = `Perfecto. Imagina conectar esa herramienta usando n8n para que ese proceso se haga solo en segundos. ⚡<br><br>He preparado un resumen de tu caso. <strong>Envíamelo al WhatsApp y te responderé con una nota de voz explicándote cómo lo automatizaríamos.</strong><br><br>
+                    <a href="${waUrl}" target="_blank" class="inline-block mt-3 w-full text-center bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-2 px-4 rounded-lg transition-all transform hover:scale-105 shadow-md">
+                        <i class="fab fa-whatsapp text-lg mr-1"></i> ENVIAR DIAGNÓSTICO A FABIO
+                    </a>`;
+                    isHtmlResponse = true;
+                    chatStep++;
 
-            }, 500);
+                    // Disable input after completion
+                    document.getElementById('agent-input').disabled = true;
+                    document.getElementById('agent-input').placeholder = "Chat finalizado.";
+                } else {
+                    response = "Por favor, haz clic en el botón de WhatsApp arriba para enviarme tu caso. ¡Hablamos por ahí! 🚀";
+                }
+
+                appendMessage(response, false, isHtmlResponse);
+
+            }, 1500);
         }
     </script>
 </body>
