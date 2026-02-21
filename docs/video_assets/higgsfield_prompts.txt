@@ -1,0 +1,29 @@
+# HIGGSFIELD AI - B-ROLL PROMPTS B2B
+
+A continuación encontrarás los prompts listos para copiar y pegar en Higgsfield AI para generar los videos de apoyo (B-Rolls) superpuestos en tu video. 
+Se recomienda generarlos en proporción 9:16 (Vertical) para que encajen perfectos en la edición de Canva.
+
+---
+
+### B-ROLL 1: El Dolor Operativo
+**Momento en el guion:** "Estás atrapado en la operación diaria. Respondes los mismos mensajes..."
+**Prompt (Copiar y Pegar):**
+> Cinematic mid-shot, vertical video. A stressed businessman in his 30s sitting at a modern desk late at night, illuminated only by the glow of his laptop screen. He looks overwhelmed, rubbing his temples. The screen reflects on his glasses showing endless rows of a spreadsheet. High quality, realistic styling, floating dust particles, low key lighting, dramatic corporate atmosphere, 4k resolution.
+
+--
+
+### B-ROLL 2: La Infraestructura (El Valor B2B)
+**Momento en el guion:** "Construyo ecosistemas completos: Agentes IA que perfilan a tus clientes, conectan tu CRM..."
+**Prompt (Copiar y Pegar):**
+> Cinematic macro shot, vertical video. Glowing digital data streams and autonomous AI nodes connecting to form a network structure over a transparent smartphone interface. High-tech, futuristic but professional aesthetic. Cyan and purple neon lights glowing softly in a dark modern office environment. Shallow depth of field, 8k resolution, highly detailed, fluid motion.
+
+--
+
+### B-ROLL 3: El Resultado (El Cierre / Calendly)
+**Momento en el guion:** "...tu equipo humano solo entre a la llamada cuando la venta ya está lista para cerrarse."
+**Prompt (Copiar y Pegar):**
+> Cinematic over-the-shoulder shot, vertical video. A professional shaking hands with a client across a sleek modern glass table in a bright corporate office during daytime. Both are smiling confidently. Professional success, closing a B2B deal concept. Natural sunlight coming from a large window, 4k resolution, photorealistic, premium business aesthetic.
+
+---
+### 💡 Recomendación para Canva:
+Cuando pongas estos videos encima de tu avatar (B-Roll), bájales la opacidad a un 85% o aplícales un filtro ligeramente oscuro para que los subtítulos en color amarillo/blanco puedan leerse claramente.
