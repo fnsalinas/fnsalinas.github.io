@@ -32,12 +32,12 @@ Se recomienda generarlos en proporción 9:16 (Vertical) para que encajen perfect
 ### B-ROLL 3: El Resultado (El Cierre / Calendly)
 **Momento en el guion:** "...tu equipo humano solo entre a la llamada cuando la venta ya está lista para cerrarse."
 **Prompt Video (Copiar y Pegar):**
-> Cinematic over-the-shoulder shot, vertical video. A professional shaking hands with a client across a sleek modern glass table in a bright corporate office during daytime. Both are smiling confidently. Professional success, closing a B2B deal concept. Natural sunlight coming from a large window, 4k resolution, photorealistic, premium business aesthetic.
+> Horizontal video, over-the-shoulder shot. Two business professionals sitting at a modern glass table in a bright corporate office, smiling and nodding in agreement. Natural daytime sunlight from a large window, 4k resolution, photorealistic, premium business aesthetic.
 
 **Prompts Imágenes Estáticas (Generación de Keyframes):**
-> **🖼️ Frame Inicial:** Portrait 9:16, over-the-shoulder shot. Two professionals reaching out their arms, hands about to meet across a sleek modern glass table in a bright corporate office. Natural sunlight streaming from a large window. High-end business attire, premium corporate aesthetic, photorealistic, cinematic lighting, 8k.
+> **🖼️ Frame Inicial:** Portrait 9:16, over-the-shoulder shot. Two business professionals sitting at a modern glass table in a bright corporate office, looking at each other and smiling. Natural sunlight streaming from a large window. High-end business attire, photorealistic, 8k.
 >
-> **🖼️ Frame Final:** Portrait 9:16, over-the-shoulder shot. A firm, successful, and enthusiastic professional handshake between two executives across a modern glass table in a bright corporate office. Both individuals are smiling confidently, celebrating a closed B2B deal. Beautiful natural daytime light from a large window, highly detailed, photorealistic, 8k.
+> **🖼️ Frame Final:** Portrait 9:16, over-the-shoulder shot. Two business executives at a modern glass table, nodding confidently in agreement. Bright daytime corporate office, beautiful natural sunlight, highly detailed, photorealistic, 8k.
 
 ---
 ### 💡 Recomendación para Canva:
